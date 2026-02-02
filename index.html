@@ -158,6 +158,30 @@ section h2 {
     text-decoration: underline;
 }
 
+/* もっと見るボタン */
+.show-more-container {
+    text-align: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.show-more-container.hidden {
+    display: none;
+}
+
+.btn-show-more {
+    background-color: #f5f5f5;
+    color: #1a237e;
+    border: 1px solid #1a237e;
+    padding: 10px 30px;
+    font-size: 0.9rem;
+}
+
+.btn-show-more:hover {
+    background-color: #e8eaf6;
+}
+
 /* モーダル */
 .modal {
     position: fixed;
@@ -667,8 +691,65 @@ footer a:hover {
         font-size: 1.5rem;
     }
 
+    header .subtitle {
+        font-size: 0.85rem;
+    }
+
+    /* 統計カード */
+    .stats-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 15px 10px;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    /* 月別グラフは横スクロール */
+    .bar-chart-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .bar-chart {
+        min-width: 600px;
+    }
+
+    .bar-chart-labels {
+        min-width: 600px;
+    }
+
+    /* 偽装対象サービス別テーブル */
+    #target-stats {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .stats-table {
+        min-width: 500px;
+    }
+
+    .stats-table th,
+    .stats-table td {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+
     .filter-controls {
         flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-group {
+        width: 100%;
     }
 
     .filter-group select,
@@ -677,18 +758,86 @@ footer a:hover {
         min-width: auto;
     }
 
+    .filter-group .btn {
+        width: 100%;
+    }
+
     .table-info {
         flex-direction: column;
         gap: 10px;
     }
 
+    /* データテーブル */
     #data-table th,
     #data-table td {
         padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+
+    .url-cell {
+        font-size: 0.75rem;
+        max-width: 200px;
     }
 
     .pagination {
         flex-wrap: wrap;
+    }
+
+    /* モーダル */
+    .modal-content {
+        max-width: 95vw;
+        width: 95%;
+        max-height: 90vh;
+        margin: 10px;
+    }
+
+    .modal-content h3 {
+        font-size: 1.1rem;
+        padding: 15px;
+    }
+
+    .modal-body {
+        padding: 15px;
+    }
+
+    .modal-table th,
+    .modal-table td {
+        padding: 10px 8px;
+        font-size: 0.85rem;
+    }
+
+    .modal-table th {
+        width: 30%;
+    }
+
+    /* もっと見るボタン */
+    .btn-show-more {
+        padding: 12px 20px;
+        width: 100%;
+    }
+}
+
+/* さらに小さい画面 */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    .stats-cards {
+        grid-template-columns: 1fr;
+    }
+
+    section h2 {
+        font-size: 1.1rem;
+    }
+
+    .modal-table th {
+        width: 35%;
+        font-size: 0.8rem;
+    }
+
+    .modal-table td {
+        font-size: 0.8rem;
     }
 }
 
@@ -738,7 +887,7 @@ footer a:hover {
 
         <!-- 偽装対象別集計 -->
         <section id="target-stats" class="stats-section">
-            <h2>偽装対象サービス別件数（上位20）</h2>
+            <h2>偽装対象サービス別件数</h2>
             <table id="target-table" class="stats-table">
                 <thead>
                     <tr>
@@ -752,6 +901,9 @@ footer a:hover {
                 </thead>
                 <tbody></tbody>
             </table>
+            <div id="target-show-more" class="show-more-container hidden">
+                <button id="target-show-more-btn" class="btn btn-show-more">もっと見る (<span id="target-remaining">0</span>件)</button>
+            </div>
         </section>
 
         <!-- フィルター -->
@@ -943,6 +1095,12 @@ const VALID_DOMAINS = {
   },
   "三井住友カード": {
     "domain": "www.smbc-card.com",
+    "emailAddresses": [
+      "@smbc-card.com",
+      "@prepaid.smbc-card.com",
+      "@smbcgroup-point.jp",
+      "@otp-auth.net"
+    ],
     "alertUrl": "https://www.smbc-card.com/mem/cardinfo/cardinfo4010384.jsp",
     "antiphishingUrl": "https://www.antiphishing.jp/news/alert/smbccard_20220622.html",
     "lastUpdate": "2023/2/3"
@@ -1236,28 +1394,23 @@ const VALID_DOMAINS = {
     "displayName": "ビューカード（VIEW's NET）",
     "domain": [
       "www.viewcard.co.jp",
-      "www.jreast.co.jp",
       "faq.viewcard.co.jp",
-      "viewsnet.jp",
-      "mail.viewsnet.jp"
-    ],
-    "emailAddresses": [
-      "@jreast.co.jp",
-      "@viewcard.co.jp",
-      "@mail.viewsnet.jp"
+      "viewsnet.jp"
     ],
     "alertUrl": "https://www.jreast.co.jp/card/security/scam.html",
     "antiphishingUrl": "https://www.antiphishing.jp/news/alert/viewcard_20221221.html",
-    "sourceUrl": "https://www.antiphishing.jp/news/alert/viewcard_20221221.html",
+    "sourceUrl": "https://faq.viewcard.co.jp/faq/show/2736?site_domain=default",
     "lastUpdate": "2026/2/2",
     "alertGoodPoints": [
       {
         "text": "○ 個人情報をメールで伺うことは絶対にないと明言",
-        "sourceUrl": "https://www.antiphishing.jp/news/alert/viewcard_20221221.html"
-      },
+        "sourceUrl": "https://faq.viewcard.co.jp/faq/show/2736?site_domain=default"
+      }
+    ],
+    "alertIssues": [
       {
-        "text": "○ 正規メールドメイン（@jreast.co.jp, @viewcard.co.jp）を公開",
-        "sourceUrl": "https://faq.viewcard.co.jp/?site_domain=default"
+        "text": "△ 正規メールドメイン一覧が非公開",
+        "sourceUrl": "https://faq.viewcard.co.jp/faq/show/2736?site_domain=default"
       }
     ]
   },
@@ -1683,9 +1836,28 @@ const VALID_DOMAINS = {
       "www.saisoncard.co.jp",
       "netanswerplus.saisoncard.co.jp",
       "api.saisoncard.co.jp",
+      "images.saisoncard.co.jp",
+      "bd.saisoncard.co.jp",
+      "short.saisoncard.co.jp",
+      "upload.saisoncard.co.jp",
       "faq.saisoncard.co.jp",
       "corporate.saisoncard.co.jp",
-      "www.saisonid.com"
+      "www.saisonid.com",
+      "www.a-q-f.com",
+      "stockindex.pointunyou.jp",
+      "w.saisonportal.jp",
+      "g.saison.link",
+      "d.saison.link"
+    ],
+    // 法人向けSMS送信サービスの短縮URLドメイン（クレディセゾンが利用）
+    // kps.ms: NTTドコモビジネス「空電プッシュ」
+    // smss.jp, smsp.jp, psms.jp, csuc.jp: 複数企業が利用するSMS送信サービス
+    "smsShortUrlDomains": [
+      "kps.ms",
+      "smss.jp",
+      "smsp.jp",
+      "psms.jp",
+      "csuc.jp"
     ],
     "emailAddresses": [
       "@mail.saisoncard.co.jp",
@@ -1695,7 +1867,7 @@ const VALID_DOMAINS = {
     ],
     "alertUrl": "https://www.saisoncard.co.jp/customer-support/security-service/phishing/",
     "antiphishingUrl": "https://www.antiphishing.jp/news/alert/saisoncard_20230512.html",
-    "sourceUrl": "https://faq.saisoncard.co.jp/saison/detail?site=OA5LHO14&id=2316",
+    "sourceUrl": "https://www.saisoncard.co.jp/topic/entry/lp_phishing/",
     "lastUpdate": "2026/2/2",
     "alertGoodPoints": [
       {
@@ -1707,13 +1879,13 @@ const VALID_DOMAINS = {
         "sourceUrl": "https://faq.saisoncard.co.jp/saison/detail?site=OA5LHO14&id=2316"
       },
       {
-        "text": "○ 正規SMS送信元ドメイン一覧を公開",
-        "sourceUrl": "https://www.saisoncard.co.jp/customer-support/security-service/phishing/"
+        "text": "○ 正規ログインページURL・SMS案内URL一覧を公開",
+        "sourceUrl": "https://www.saisoncard.co.jp/topic/entry/lp_phishing/"
       }
     ]
   },
   "大和証券": {
-    "domain": ["www.daiwa.jp", "www.daiwa.co.jp", "daiwa.dga.jp"],
+    "domain": ["www.daiwa.jp", "www.daiwa.co.jp"],
     "emailAddresses": [
       "@daiwa.co.jp",
       "ddfx@fxmail.daiwa.co.jp",
@@ -1766,20 +1938,11 @@ const VALID_DOMAINS = {
   },
   "Vpass": {
     "displayName": "Vpass（三井住友カード会員サービス）",
-    "domain": [
-      "www.smbc-card.com",
-      "www3.vpass.ne.jp",
-      "vpass.ne.jp",
-      "contact.vpass.ne.jp",
-      "mail.vpass.ne.jp"
-    ],
+    "domain": "www3.vpass.ne.jp",
     "emailAddresses": [
-      "@smbc-card.com",
       "@vpass.ne.jp",
       "@mail.vpass.ne.jp",
-      "@contact.vpass.ne.jp",
-      "@smbcgroup-point.jp",
-      "@otp-auth.net"
+      "@contact.vpass.ne.jp"
     ],
     "alertUrl": "https://www.smbc-card.com/mem/service/sec/phishing01.jsp",
     "antiphishingUrl": "https://www.antiphishing.jp/news/alert/vjavpass_20210908.html",
@@ -1819,7 +1982,9 @@ const state = {
         month: '',
         target: '',
         search: ''
-    }
+    },
+    targetStatsDisplayCount: 20,  // 偽装対象サービス別件数の表示件数
+    targetStatsIncrement: 20      // 「もっと見る」で追加する件数
 };
 
 // データはdata.jsから読み込み（PHISHING_DATA変数）
@@ -2061,13 +2226,37 @@ function renderStackedLegend(topTargets, colorMap) {
     legendContainer.innerHTML = legendHtml + othersHtml;
 }
 
+// 偽装対象別統計の全データを保持
+let targetStatsData = {
+    sorted: [],
+    totalCount: 0
+};
+
 /**
  * 偽装対象別統計テーブルを表示
  */
 function renderTargetStats(targetCount, totalCount) {
     const sorted = Object.entries(targetCount)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 20);
+        .sort((a, b) => b[1] - a[1]);
+
+    // グローバルに保存
+    targetStatsData.sorted = sorted;
+    targetStatsData.totalCount = totalCount;
+
+    // 表示件数をリセット
+    state.targetStatsDisplayCount = 20;
+
+    // テーブルを更新
+    updateTargetStatsTable();
+}
+
+/**
+ * 偽装対象別統計テーブルを更新（表示件数に応じて）
+ */
+function updateTargetStatsTable() {
+    const { sorted, totalCount } = targetStatsData;
+    const displayCount = Math.min(state.targetStatsDisplayCount, sorted.length);
+    const displayData = sorted.slice(0, displayCount);
 
     // VALID_DOMAINSが読み込まれているか確認
     const validDomains = (typeof VALID_DOMAINS !== 'undefined') ? VALID_DOMAINS : {};
@@ -2076,7 +2265,7 @@ function renderTargetStats(targetCount, totalCount) {
     const today = new Date();
     const sevenDaysAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
 
-    elements.targetTableBody.innerHTML = sorted.map(([target, count], index) => {
+    elements.targetTableBody.innerHTML = displayData.map(([target, count], index) => {
         const percentage = (count / totalCount * 100).toFixed(2);
         const info = validDomains[target];
         const hasInfo = info && info.domain && (Array.isArray(info.domain) ? info.domain.length > 0 : true);
@@ -2117,6 +2306,33 @@ function renderTargetStats(targetCount, totalCount) {
     elements.targetTableBody.querySelectorAll('.service-name-link').forEach(el => {
         el.addEventListener('click', () => showServiceModal(el.dataset.service));
     });
+
+    // 「もっと見る」ボタンの表示/非表示を更新
+    updateShowMoreButton();
+}
+
+/**
+ * 「もっと見る」ボタンの表示状態を更新
+ */
+function updateShowMoreButton() {
+    const showMoreContainer = document.getElementById('target-show-more');
+    const remainingSpan = document.getElementById('target-remaining');
+    const remaining = targetStatsData.sorted.length - state.targetStatsDisplayCount;
+
+    if (remaining > 0) {
+        showMoreContainer.classList.remove('hidden');
+        remainingSpan.textContent = remaining;
+    } else {
+        showMoreContainer.classList.add('hidden');
+    }
+}
+
+/**
+ * 偽装対象サービス別件数の「もっと見る」を処理
+ */
+function showMoreTargetStats() {
+    state.targetStatsDisplayCount += state.targetStatsIncrement;
+    updateTargetStatsTable();
 }
 
 /**
@@ -2259,10 +2475,9 @@ function setupFilters(stats) {
             return `<option value="${month}">${label}</option>`;
         }).join('');
 
-    // 偽装対象フィルター（上位30）
+    // 偽装対象フィルター（全件）
     const sortedTargets = Object.entries(stats.targetCount)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 30);
+        .sort((a, b) => b[1] - a[1]);
     elements.targetFilter.innerHTML = '<option value="">すべて</option>' +
         sortedTargets.map(([target]) =>
             `<option value="${escapeHtml(target)}">${escapeHtml(target)}</option>`
@@ -2493,6 +2708,9 @@ function setupEventListeners() {
             closeServiceModal();
         }
     });
+
+    // 偽装対象サービス別件数の「もっと見る」ボタン
+    document.getElementById('target-show-more-btn').addEventListener('click', showMoreTargetStats);
 }
 
 /**
