@@ -211,19 +211,41 @@ section h2 {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-.modal-close {
+.modal-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
     position: absolute;
     top: 10px;
     right: 15px;
+}
+
+.modal-close {
     font-size: 1.5rem;
     background: none;
     border: none;
     cursor: pointer;
     color: #666;
+    order: 2;
 }
 
 .modal-close:hover {
     color: #333;
+}
+
+.btn-report {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    background-color: #ff9800;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    order: 1;
+}
+
+.btn-report:hover {
+    background-color: #f57c00;
 }
 
 .modal-content h3 {
@@ -840,6 +862,7 @@ footer a:hover {
         font-size: 0.8rem;
     }
 }
+/* チェックリストボタン */.btn-small {    padding: 4px 12px;    font-size: 0.8rem;    vertical-align: middle;    margin-left: 10px;}/* チェックリストモーダル */.modal-wide {    max-width: 700px;}.checklist-body {    max-height: 70vh;    overflow-y: auto;}.checklist-section {    margin-bottom: 24px;}.checklist-section h4 {    font-size: 1.1rem;    color: #2e7d32;    margin-bottom: 16px;    padding-bottom: 8px;    border-bottom: 2px solid #2e7d32;}.checklist-section.checklist-issues h4 {    color: #f57c00;    border-bottom-color: #f57c00;}.checklist-section h5 {    font-size: 0.95rem;    color: #555;    margin: 16px 0 8px 0;}.checklist {    list-style: none;    padding-left: 0;}.checklist li {    padding: 8px 12px;    margin: 4px 0;    background: #f8f9fa;    border-radius: 4px;    font-size: 0.9rem;    border-left: 3px solid #4caf50;}.checklist-issues .checklist li {    border-left-color: #ff9800;}@media (max-width: 768px) {    .btn-small {        display: block;        margin: 10px 0 0 0;        width: fit-content;    }    .modal-wide {        max-width: 95vw;    }    .checklist-body {        max-height: 60vh;    }    .checklist-section h4 {        font-size: 1rem;    }    .checklist li {        font-size: 0.85rem;        padding: 6px 10px;    }}
 
 </style>
 </head>
@@ -887,7 +910,7 @@ footer a:hover {
 
         <!-- 偽装対象別集計 -->
         <section id="target-stats" class="stats-section">
-            <h2>偽装対象サービス別件数</h2>
+            <h2>偽装対象サービス別件数 <button id="checklist-btn" class="btn btn-small">📋 評価チェックリスト</button></h2>
             <table id="target-table" class="stats-table">
                 <thead>
                     <tr>
@@ -980,7 +1003,10 @@ footer a:hover {
     <!-- サービス詳細モーダル -->
     <div id="service-modal" class="modal hidden">
         <div class="modal-content">
-            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-header">
+                <button class="modal-close" id="modal-close">&times;</button>
+                <a id="modal-report-btn" class="btn btn-report" href="https://github.com/secalert170925/phishing_2026_securitymonth/issues" target="_blank" rel="noopener">📝 報告する</a>
+            </div>
             <h3 id="modal-title">サービス名</h3>
             <div class="modal-body">
                 <table class="modal-table">
@@ -1017,6 +1043,69 @@ footer a:hover {
                         <td id="modal-good-points">-</td>
                     </tr>
                 </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- チェックリストモーダル -->
+    <div id="checklist-modal" class="modal hidden">
+        <div class="modal-content modal-wide">
+            <button class="modal-close" id="checklist-modal-close">&times;</button>
+            <h3>注意喚起ページ評価チェックリスト</h3>
+            <div class="modal-body checklist-body">
+                <div class="checklist-section">
+                    <h4>○ 良い点（alertGoodPoints）</h4>
+
+                    <h5>正規情報の公開</h5>
+                    <ul class="checklist">
+                        <li>正規ドメイン一覧を公開</li>
+                        <li>正規ログインURLを公開</li>
+                        <li>正規メールアドレス一覧を公開</li>
+                        <li>正規SMS送信元ドメイン一覧を公開</li>
+                        <li>正規ログインページURL・SMS案内URL一覧を公開</li>
+                    </ul>
+
+                    <h5>「〜することはない」の明言</h5>
+                    <ul class="checklist">
+                        <li>メールでログインID・パスワード等を尋ねることはないと明言</li>
+                        <li>メールでパスワード・認証コード・デバイスパスコードを尋ねることはないと明言</li>
+                        <li>ログイン時にカード番号・暗証番号等を求めることはないと明言</li>
+                        <li>ログイン後すぐに取引パスワードを求めることはないと明言</li>
+                        <li>ネットショッピング時以外に認証コードを求めることはないと明言</li>
+                        <li>個人情報をメールで伺うことは絶対にないと明言</li>
+                        <li>セキュリティ機能の無効化を要求することはないと明言</li>
+                    </ul>
+
+                    <h5>セキュリティ技術の導入</h5>
+                    <ul class="checklist">
+                        <li>BIMI対応でメールに公式ロゴが表示される</li>
+                        <li>SPF/DKIM/DMARC全ての認証方式を導入</li>
+                    </ul>
+
+                    <h5>その他の良い取り組み</h5>
+                    <ul class="checklist">
+                        <li>LINE・SNS経由の詐欺についても注意喚起</li>
+                        <li>具体的なフィッシングメール件名を提示</li>
+                        <li>お気に入り・ブックマークからアクセスするよう明記</li>
+                    </ul>
+                </div>
+
+                <div class="checklist-section checklist-issues">
+                    <h4>△ 問題点・改善点（alertIssues）</h4>
+
+                    <h5>情報の非公開</h5>
+                    <ul class="checklist">
+                        <li>正規Webサイトドメインが非公開</li>
+                        <li>正規メールアドレス一覧が非公開</li>
+                        <li>正規メールドメイン一覧が非公開</li>
+                    </ul>
+
+                    <h5>その他の問題</h5>
+                    <ul class="checklist">
+                        <li>日本語での注意喚起ページがない（海外企業の場合）</li>
+                        <li>画像内で例示ドメインとして不適切なドメインを使用（例: xxx.com）</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -1788,9 +1877,13 @@ const VALID_DOMAINS = {
       "sbi-kMail_v4@sbisec.co.jp",
       "sbi-kMail_v5@sbisec.co.jp"
     ],
-    "alertUrl": "https://www.sbisec.co.jp/ETGate/WPLETmgR001Control?OutSide=on&getFlg=on&burl=search_home&cat1=home&cat2=none&dir=info&file=home_info230721_01.html",
+    "alertUrl": [
+      "https://www.sbisec.co.jp/ETGate/WPLETmgR001Control?OutSide=on&getFlg=on&burl=search_home&cat1=home&cat2=none&dir=info&file=home_info250204_phishing.html",
+      "https://www.sbisec.co.jp/ETGate/WPLETmgR001Control?OutSide=on&getFlg=on&burl=search_home&cat1=home&cat2=service&dir=service&file=home_security.html",
+      "https://www.sbisec.co.jp/ETGate/?_ControlID=WPLETmgR001Control&_PageID=WPLETmgR001Mdtl20&_ActionID=DefaultAID&_DataStoreID=DSWPLETmgR001Control&OutSide=on&getFlg=on&cat1=home&cat2=info&burl=search_home&dir=info&file=home_info251127_security.html"
+    ],
     "antiphishingUrl": "https://www.antiphishing.jp/news/alert/sbisec_20250401.html",
-    "sourceUrl": "https://www.sbisec.co.jp/ETGate/WPLETmgR001Control?OutSide=on&getFlg=on&burl=search_home&cat1=home&cat2=none&dir=info&file=home_info230721_01.html#domain",
+    "sourceUrl": "https://www.sbisec.co.jp/ETGate/WPLETmgR001Control?OutSide=on&getFlg=on&burl=search_home&cat1=home&cat2=none&dir=info&file=home_info230721_01.html",
     "lastUpdate": "2026/2/2",
     "alertGoodPoints": [
       {
@@ -1800,6 +1893,14 @@ const VALID_DOMAINS = {
       {
         "text": "○ ユーザーネーム・ログインパスワード・取引パスワードをメール等で照会することはないと明言",
         "sourceUrl": "https://faq.sbisec.co.jp/answer/62e38e29e84827ae42541908/"
+      },
+      {
+        "text": "○ LINE・SNS経由の詐欺についても注意喚起",
+        "sourceUrl": "https://www.sbisec.co.jp/ETGate/WPLETmgR001Control?OutSide=on&getFlg=on&burl=search_home&cat1=home&cat2=none&dir=info&file=home_info250204_phishing.html"
+      },
+      {
+        "text": "○ お気に入り・ブックマークからアクセスするよう明記",
+        "sourceUrl": "https://www.sbisec.co.jp/ETGate/?_ControlID=WPLETmgR001Control&_PageID=WPLETmgR001Mdtl20&_ActionID=DefaultAID&_DataStoreID=DSWPLETmgR001Control&OutSide=on&getFlg=on&cat1=home&cat2=info&burl=search_home&dir=info&file=home_info251127_security.html"
       }
     ]
   },
@@ -2377,7 +2478,7 @@ function showServiceModal(serviceName) {
         if (info.alertUrl) {
             const alertUrls = Array.isArray(info.alertUrl) ? info.alertUrl : [info.alertUrl];
             document.getElementById('modal-alert').innerHTML = alertUrls
-                .map(url => `<a href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(url)}</a>`)
+                .map(url => `<a href="${escapeHtml(url)}" target="_blank" rel="noopener">🔗 ${escapeHtml(url)}</a>`)
                 .join('<br>');
         } else {
             document.getElementById('modal-alert').innerHTML = '<span class="no-data">なし</span>';
@@ -2386,7 +2487,7 @@ function showServiceModal(serviceName) {
         // フィッシング対策協議会
         if (info.antiphishingUrl) {
             document.getElementById('modal-antiphishing').innerHTML =
-                `<a href="${escapeHtml(info.antiphishingUrl)}" target="_blank" rel="noopener">${escapeHtml(info.antiphishingUrl)}</a>`;
+                `<a href="${escapeHtml(info.antiphishingUrl)}" target="_blank" rel="noopener">🔗 ${escapeHtml(info.antiphishingUrl)}</a>`;
         } else {
             document.getElementById('modal-antiphishing').innerHTML = '<span class="no-data">なし</span>';
         }
@@ -2394,7 +2495,7 @@ function showServiceModal(serviceName) {
         // データソース
         if (info.sourceUrl) {
             document.getElementById('modal-source').innerHTML =
-                `<a href="${escapeHtml(info.sourceUrl)}" target="_blank" rel="noopener">${escapeHtml(info.sourceUrl)}</a>`;
+                `<a href="${escapeHtml(info.sourceUrl)}" target="_blank" rel="noopener">🔗 ${escapeHtml(info.sourceUrl)}</a>`;
             document.getElementById('modal-source-row').style.display = '';
         } else {
             document.getElementById('modal-source-row').style.display = 'none';
@@ -2711,6 +2812,31 @@ function setupEventListeners() {
 
     // 偽装対象サービス別件数の「もっと見る」ボタン
     document.getElementById('target-show-more-btn').addEventListener('click', showMoreTargetStats);
+
+    // チェックリストモーダル
+    document.getElementById('checklist-btn').addEventListener('click', openChecklistModal);
+    document.getElementById('checklist-modal-close').addEventListener('click', closeChecklistModal);
+    document.getElementById('checklist-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'checklist-modal') {
+            closeChecklistModal();
+        }
+    });
+}
+
+/**
+ * チェックリストモーダルを開く
+ */
+function openChecklistModal() {
+    document.getElementById('checklist-modal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+/**
+ * チェックリストモーダルを閉じる
+ */
+function closeChecklistModal() {
+    document.getElementById('checklist-modal').classList.add('hidden');
+    document.body.style.overflow = '';
 }
 
 /**
