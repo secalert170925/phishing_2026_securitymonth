@@ -1135,22 +1135,107 @@ const VALID_DOMAINS = {
     "lastUpdate": "2023/2/1"
   },
   "au": {
-    "domain": "connect.auone.jp",
+    "displayName": "au（KDDI）",
+    "domain": [
+      "www.au.com",
+      "connect.auone.jp",
+      "id.auone.jp"
+    ],
     "alertUrl": "https://www.au.com/support/service/mobile/trouble/forestalling/safety/edification/",
-    "antiphishingUrl": "",
-    "lastUpdate": "2023/2/1"
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/aupay_20241205.html",
+    "sourceUrl": "https://www.au.com/support/service/mobile/trouble/forestalling/safety/edification/",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ DMARC/DKIM/BIMI対応でメールに公式ロゴが表示される（2023年10月〜）",
+        "sourceUrl": "https://www.au.com/mobile/service/email/safety/"
+      },
+      {
+        "text": "○ SMS共通番号ウェブサイトを携帯4社共同で公開（2025年7月〜）",
+        "sourceUrl": "https://japansms.com"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規ドメイン一覧が非公開",
+        "sourceUrl": "https://www.au.com/support/service/mobile/trouble/forestalling/safety/edification/"
+      },
+      {
+        "text": "△ 正規メールアドレス一覧が非公開",
+        "sourceUrl": "https://www.au.com/support/service/mobile/trouble/forestalling/safety/edification/"
+      }
+    ]
   },
   "Amazon": {
-    "domain": "*.amazon.co.jp",
+    "domain": [
+      "www.amazon.co.jp",
+      "amazon.co.jp",
+      "amazon.jp"
+    ],
+    "emailAddresses": [
+      "@amazon.co.jp",
+      "@amazon.jp",
+      "@amazon.com",
+      "@amazonbusiness.jp",
+      "@email.amazon.com",
+      "@marketplace.amazon.co.jp",
+      "@m.marketplace.amazon.co.jp",
+      "@gc.email.amazon.co.jp",
+      "@gc.amazon.co.jp",
+      "@payments.amazon.co.jp"
+    ],
     "alertUrl": "https://www.amazon.co.jp/gp/help/customer/display.html?nodeId=G4YFYCCNUSENA23B",
     "antiphishingUrl": "https://www.antiphishing.jp/news/alert/amazonQR_20230105.html",
-    "lastUpdate": "2023/2/2"
+    "sourceUrl": "https://www.amazon.co.jp/gp/help/customer/display.html?nodeId=GE5AWNQ2J4A4W938",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ メッセージセンターで正規メールを確認できる機能を提供",
+        "sourceUrl": "https://www.amazon.co.jp/gp/message"
+      },
+      {
+        "text": "○ Gmail等でAmazon公式ロゴ・チェックマークが表示される（BIMI対応）",
+        "sourceUrl": "https://www.aboutamazon.jp/news/guide/3-key-points-to-prevent-phishing-scam-emails"
+      },
+      {
+        "text": "○ 正規メール送信ドメイン一覧を公開",
+        "sourceUrl": "https://www.amazon.co.jp/gp/help/customer/display.html?nodeId=GE5AWNQ2J4A4W938"
+      }
+    ]
   },
   "Orico": {
-    "domain": "www.orico.tv",
+    "displayName": "オリコカード",
+    "domain": [
+      "www.orico.co.jp",
+      "orico.jp",
+      "www.orico.tv"
+    ],
+    "emailAddresses": [
+      "@orico.co.jp",
+      "orico@p.onet.orico.co.jp"
+    ],
     "alertUrl": "https://www.orico.co.jp/support/careful/trouble_online/",
     "antiphishingUrl": "https://www.antiphishing.jp/news/alert/orico_20221209.html",
-    "lastUpdate": "2023/2/2"
+    "sourceUrl": "https://www.orico.co.jp/support/careful/trouble_online/",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ 正規ドメイン一覧・正規メールアドレス一覧を公開",
+        "sourceUrl": "https://www.orico.co.jp/support/careful/trouble_online/"
+      },
+      {
+        "text": "○ メールで口座確認などを依頼することはないと明言",
+        "sourceUrl": "https://www.orico.co.jp/support/careful/trouble_online/"
+      },
+      {
+        "text": "○ BIMI対応でメールに公式ロゴが表示される",
+        "sourceUrl": "https://prtimes.jp/main/html/rd/p/000000223.000084623.html"
+      },
+      {
+        "text": "○ SPF/DKIM/DMARC認証を導入",
+        "sourceUrl": "https://www.orico.co.jp/support/careful/trouble_online/"
+      }
+    ]
   },
   "ETC利用照会サービス": {
     "domain": "www2.etc-meisai.jp",
@@ -1183,7 +1268,11 @@ const VALID_DOMAINS = {
     "lastUpdate": "2023/2/3"
   },
   "三井住友カード": {
-    "domain": "www.smbc-card.com",
+    "domain": [
+      "www.smbc-card.com",
+      "contact.smbc-card.com",
+      "prepaid.smbc-card.com"
+    ],
     "emailAddresses": [
       "@smbc-card.com",
       "@prepaid.smbc-card.com",
@@ -1191,14 +1280,47 @@ const VALID_DOMAINS = {
       "@otp-auth.net"
     ],
     "alertUrl": "https://www.smbc-card.com/mem/cardinfo/cardinfo4010384.jsp",
-    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/smbccard_20220622.html",
-    "lastUpdate": "2023/2/3"
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/qr_20240828.html",
+    "sourceUrl": "https://www.smbc-card.com/mem/cardinfo/cardinfo4010384.jsp",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ メールでクレジットカード番号等の個人情報を聞くことはないと明言",
+        "sourceUrl": "https://www.smbc-card.com/mem/cardinfo/cardinfo4010384.jsp"
+      },
+      {
+        "text": "○ 正規メールドメイン一覧を公開",
+        "sourceUrl": "https://www.smbc-card.com/mem/cardinfo/cardinfo4010384.jsp"
+      },
+      {
+        "text": "○ 公式アプリ・ブックマークからのアクセスを推奨",
+        "sourceUrl": "https://www.smbc-card.com/mem/cardinfo/cardinfo4010384.jsp"
+      },
+      {
+        "text": "○ LINE公式アカウントの見分け方（紺色マーク）を提示",
+        "sourceUrl": "https://www.smbc-card.com/mem/cardinfo/cardinfo4010384.jsp"
+      }
+    ]
   },
   "えきねっと": {
     "domain": "www.eki-net.com",
-    "alertUrl": "https://www.eki-net.com/top/oshirase/attention/202201.pdf",
-    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/ekinet_20230308.html",
-    "lastUpdate": "2023/3/8"
+    "emailAddresses": [
+      "@eki-net.com"
+    ],
+    "alertUrl": "https://www.eki-net.com/top/oshirase/security/",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/ekinet_20241205.html",
+    "sourceUrl": "https://secure.okbiz.jp/eki-net/faq/show/1747",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ 正規メールドメイン（@eki-net.com）を公開",
+        "sourceUrl": "https://secure.okbiz.jp/eki-net/faq/show/1747"
+      },
+      {
+        "text": "○ 自動退会を予告するメールは送信していないと明言",
+        "sourceUrl": "https://secure.okbiz.jp/eki-net/faq/show/3301"
+      }
+    ]
   },
   "イオンカード": {
     "domain": "www.aeon.co.jp",
@@ -1231,10 +1353,40 @@ const VALID_DOMAINS = {
     "lastUpdate": "2023/2/3"
   },
   "NHK": {
-    "domain": "pid.nhk.or.jp",
-    "alertUrl": "https://www.antiphishing.jp/news/alert/nhk_20220419.html",
-    "antiphishingUrl": "",
-    "lastUpdate": "2023/2/3"
+    "displayName": "NHK（NHKプラス / NHK ONE）",
+    "domain": [
+      "pid.nhk.or.jp",
+      "www.nhk.or.jp",
+      "plus.nhk.jp",
+      "www.nhk-cs.jp"
+    ],
+    "emailAddresses": [
+      "@mail.nhk"
+    ],
+    "alertUrl": "https://www.nhk-cs.jp/support/faq/login/10-A031/",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/nhk_20220419.html",
+    "sourceUrl": "https://www.nhk-cs.jp/support/faq/login/10-A031/",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ NHKプラスはアップグレード手続きをお願いすることはないと明言",
+        "sourceUrl": "https://www.nhk-cs.jp/support/faq/login/10-A031/"
+      },
+      {
+        "text": "○ 外部サイトに直接誘導することはないと明言",
+        "sourceUrl": "https://www.nhk-cs.jp/support/faq/login/10-A031/"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規メールアドレス一覧が非公開",
+        "sourceUrl": "https://www.nhk-cs.jp/support/faq/login/10-A031/"
+      },
+      {
+        "text": "△ 正規ドメイン一覧が網羅的に公開されていない",
+        "sourceUrl": "https://www.nhk-cs.jp/support/faq/login/10-A031/"
+      }
+    ]
   },
   "United Parcel Service Inc.": {
     "domain": "",
@@ -1291,10 +1443,42 @@ const VALID_DOMAINS = {
     "lastUpdate": ""
   },
   "国税庁": {
-    "domain": "www.nta.go.jp",
-    "alertUrl": "https://www.nta.go.jp/about/organization/kantoshinetsu/topics/nise/01.htm",
-    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/nta_20220823.html",
-    "lastUpdate": "2023/2/8"
+    "displayName": "国税庁（e-Tax）",
+    "domain": [
+      "www.nta.go.jp",
+      "www.e-tax.nta.go.jp"
+    ],
+    "emailAddresses": [
+      "info@e-tax.nta.go.jp"
+    ],
+    "alertUrl": "https://www.nta.go.jp/information/attention/attention.htm",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/nta_20240522.html",
+    "sourceUrl": "https://www.e-tax.nta.go.jp/topics/2024/topics_hushinmail.htm",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ 正規メールアドレス（info@e-tax.nta.go.jp）を明記",
+        "sourceUrl": "https://www.e-tax.nta.go.jp/topics/2024/topics_hushinmail.htm"
+      },
+      {
+        "text": "○ SMSによる案内は送信していないと明記",
+        "sourceUrl": "https://www.e-tax.nta.go.jp/topics/2024/topics_hushinmail.htm"
+      },
+      {
+        "text": "○ 正規メールには原則URLを記載しないと明記",
+        "sourceUrl": "https://www.e-tax.nta.go.jp/topics/2024/topics_hushinmail.htm"
+      },
+      {
+        "text": "○ 支払催促・差押予告・滞納金額を記載したメールは送らないと明記",
+        "sourceUrl": "https://www.e-tax.nta.go.jp/topics/2024/topics_hushinmail.htm"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規ドメイン一覧が網羅的に公開されていない",
+        "sourceUrl": "https://www.nta.go.jp/information/attention/attention.htm"
+      }
+    ]
   },
   "Impots.gouv.fr": {
     "domain": "",
@@ -1303,10 +1487,35 @@ const VALID_DOMAINS = {
     "lastUpdate": ""
   },
   "Microsoft": {
-    "domain": "www.microsoft.com",
-    "alertUrl": "",
-    "antiphishingUrl": "",
-    "lastUpdate": "2023/2/1"
+    "domain": [
+      "www.microsoft.com",
+      "support.microsoft.com",
+      "account.microsoft.com",
+      "login.microsoftonline.com"
+    ],
+    "emailAddresses": [
+      "@accountprotection.microsoft.com"
+    ],
+    "alertUrl": "https://www.microsoft.com/ja-jp/office/homeuse/attention3",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/microsoft_20180322.html",
+    "sourceUrl": "https://support.microsoft.com/en-us/account-billing/can-i-trust-email-from-the-microsoft-account-team-685fd302-f52f-1a9f-cc13-065dec46fe25",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ 正規メール送信ドメイン（@accountprotection.microsoft.com）を公開",
+        "sourceUrl": "https://support.microsoft.com/en-us/account-billing/can-i-trust-email-from-the-microsoft-account-team-685fd302-f52f-1a9f-cc13-065dec46fe25"
+      },
+      {
+        "text": "○ 日本語での不審メール注意喚起ページを提供",
+        "sourceUrl": "https://www.microsoft.com/ja-jp/office/homeuse/attention3"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規ドメイン一覧が網羅的に公開されていない",
+        "sourceUrl": "https://support.microsoft.com/en-us/windows/protect-yourself-from-phishing-0c7ea947-ba98-3bd9-7184-430e1f860a44"
+      }
+    ]
   },
   "BT": {
     "domain": "",
@@ -1411,25 +1620,10 @@ const VALID_DOMAINS = {
     "lastUpdate": "2023/2/1"
   },
   "Apple ID": {
-    "domain": ["www.apple.com", "appleid.apple.com", "support.apple.com", "icloud.com"],
-    "alertUrl": "https://support.apple.com/en-us/102568",
-    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/apple_20250305.html",
-    "sourceUrl": "https://support.apple.com/en-us/102568",
-    "lastUpdate": "2026/2/2",
-    "alertGoodPoints": [
-      {
-        "text": "○ メールでパスワード・認証コード・デバイスパスコードを尋ねることはないと明言",
-        "sourceUrl": "https://support.apple.com/en-us/102568"
-      },
-      {
-        "text": "○ 二要素認証での「承認」を求めることはないと明言",
-        "sourceUrl": "https://support.apple.com/en-us/102568"
-      },
-      {
-        "text": "○ セキュリティ機能の無効化を要求することはないと明言",
-        "sourceUrl": "https://support.apple.com/en-us/102568"
-      }
-    ]
+    "domain": "",
+    "alertUrl": "",
+    "antiphishingUrl": "",
+    "lastUpdate": ""
   },
   "BIGLOBE": {
     "domain": "www.biglobe.ne.jp",
@@ -1450,10 +1644,34 @@ const VALID_DOMAINS = {
     "lastUpdate": "2023/2/1"
   },
   "みずほ銀行": {
-    "domain": "www.mizuhobank.co.jp",
-    "alertUrl": "",
-    "antiphishingUrl": "",
-    "lastUpdate": "2023/2/1"
+    "domain": [
+      "www.mizuhobank.co.jp",
+      "web.ib.mizuhobank.co.jp",
+      "tetsudukiweb.m041.mizuhobank.co.jp",
+      "info.www.mizuhobank.co.jp",
+      "mizuhobank.resv.jp",
+      "dm.mizuhobank.co.jp",
+      "www.b-web.mizuhobank.co.jp"
+    ],
+    "emailAddresses": [
+      "@e-mail.mizuhobank.co.jp",
+      "@mm.mizuhobank.co.jp",
+      "@mizuho-bk.co.jp"
+    ],
+    "alertUrl": "https://www.mizuhobank.co.jp/crime/email.html",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/mizuho_20230714.html",
+    "sourceUrl": "https://www.mizuhobank.co.jp/crime/omona_hp.html",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ 正規ドメイン一覧・正規メールアドレス一覧を公開",
+        "sourceUrl": "https://www.mizuhobank.co.jp/crime/omona_hp.html"
+      },
+      {
+        "text": "○ S/MIME電子署名付きメールを導入",
+        "sourceUrl": "https://www.mizuhobank.co.jp/crime/smime/index.html"
+      }
+    ]
   },
   "モバイルSuica": {
     "domain": "www.mobilesuica.com",
@@ -1468,10 +1686,31 @@ const VALID_DOMAINS = {
     "lastUpdate": "2023/2/1"
   },
   "TS CUBIC CARD_MY TS3": {
-    "domain": "my.tscubic.com",
-    "alertUrl": "https://tscubic.com/file/pdf/phishing_mail.pdf",
-    "antiphishingUrl": "",
-    "lastUpdate": "2023/2/2"
+    "displayName": "TS CUBIC CARD（トヨタファイナンス）",
+    "domain": [
+      "tscubic.com",
+      "my.tscubic.com",
+      "faq.toyota-finance.co.jp"
+    ],
+    "emailAddresses": [
+      "info@tscubic.com"
+    ],
+    "alertUrl": "https://faq.toyota-finance.co.jp/faq/show/5393?category_id=53&site_domain=ts3",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/ts_cubic_card_20220204.html",
+    "sourceUrl": "https://faq.toyota-finance.co.jp/faq/show/5393?category_id=53&site_domain=ts3",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ メールでカード番号・暗証番号・ログインID・パスワードを聞くことはないと明言",
+        "sourceUrl": "https://faq.toyota-finance.co.jp/faq/show/5393?category_id=53&site_domain=ts3"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規ドメイン一覧が不十分",
+        "sourceUrl": "https://faq.toyota-finance.co.jp/faq/show/5393?category_id=53&site_domain=ts3"
+      }
+    ]
   },
   "Netflix": {
     "domain": "www.netflix.com",
@@ -1480,28 +1719,10 @@ const VALID_DOMAINS = {
     "lastUpdate": "2023/2/1"
   },
   "Viewcard": {
-    "displayName": "ビューカード（VIEW's NET）",
-    "domain": [
-      "www.viewcard.co.jp",
-      "faq.viewcard.co.jp",
-      "viewsnet.jp"
-    ],
-    "alertUrl": "https://www.jreast.co.jp/card/security/scam.html",
-    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/viewcard_20221221.html",
-    "sourceUrl": "https://faq.viewcard.co.jp/faq/show/2736?site_domain=default",
-    "lastUpdate": "2026/2/2",
-    "alertGoodPoints": [
-      {
-        "text": "○ 個人情報をメールで伺うことは絶対にないと明言",
-        "sourceUrl": "https://faq.viewcard.co.jp/faq/show/2736?site_domain=default"
-      }
-    ],
-    "alertIssues": [
-      {
-        "text": "△ 正規メールドメイン一覧が非公開",
-        "sourceUrl": "https://faq.viewcard.co.jp/faq/show/2736?site_domain=default"
-      }
-    ]
+    "domain": "",
+    "alertUrl": "",
+    "antiphishingUrl": "",
+    "lastUpdate": ""
   },
   "Bank of America": {
     "domain": "",
@@ -1516,10 +1737,37 @@ const VALID_DOMAINS = {
     "lastUpdate": "2023/2/1"
   },
   "ヤマト運輸": {
-    "domain": "www.kuronekoyamato.co.jp",
-    "alertUrl": "",
-    "antiphishingUrl": "",
-    "lastUpdate": "2023/2/1"
+    "domain": [
+      "www.kuronekoyamato.co.jp",
+      "faq.kuronekoyamato.co.jp"
+    ],
+    "emailAddresses": [
+      "@kuronekoyamato.co.jp",
+      "@ml.kuronekoyamato.co.jp",
+      "@ml2.kuronekoyamato.co.jp"
+    ],
+    "alertUrl": "https://www.yamato-hd.co.jp/important/info_181212.html",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/yamato_20230203.html",
+    "sourceUrl": "https://faq.kuronekoyamato.co.jp/app/answers/detail/a_id/2507",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ 正規メールドメイン一覧を公開",
+        "sourceUrl": "https://faq.kuronekoyamato.co.jp/app/answers/detail/a_id/2507"
+      },
+      {
+        "text": "○ SMSでは連絡しないと明言",
+        "sourceUrl": "https://www.yamato-hd.co.jp/important/info_181212.html"
+      },
+      {
+        "text": "○ BIMI対応でメールに公式ロゴが表示される（2025年8月26日〜）",
+        "sourceUrl": "https://www.yamato-hd.co.jp/important/info_181212.html"
+      },
+      {
+        "text": "○ DMARC認証を導入（2025年4月22日〜）",
+        "sourceUrl": "https://www.kuronekoyamato.co.jp/ytc/info/info_250318.html"
+      }
+    ]
   },
   "PayPal": {
     "domain": "",
@@ -1582,10 +1830,43 @@ const VALID_DOMAINS = {
     "lastUpdate": "2023/2/1"
   },
   "UC Card": {
-    "domain": "www2.uccard.co.jp",
-    "alertUrl": "",
-    "antiphishingUrl": "",
-    "lastUpdate": "2023/2/1"
+    "displayName": "UCカード（アットユーネット）",
+    "domain": [
+      "www2.uccard.co.jp",
+      "atunet.uccard.co.jp",
+      "w.ucportal.jp",
+      "api.saisoncard.co.jp",
+      "bd.saisoncard.co.jp",
+      "bd4.saisoncard.co.jp"
+    ],
+    "emailAddresses": [
+      "atu@mail.uccard.co.jp",
+      "atubd@mail.uccard.co.jp",
+      "opmr@mail.saisoncard.co.jp",
+      "opbd@mail.saisoncard.co.jp"
+    ],
+    "smsShortUrlDomains": [
+      "smsp.jp",
+      "psms.jp",
+      "smss.jp",
+      "kps.ms",
+      "csuc.jp",
+      "s-f.co"
+    ],
+    "alertUrl": "https://www2.uccard.co.jp/important/pop/phishing1510.html",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/uccard_20210115.html",
+    "sourceUrl": "https://www2.uccard.co.jp/important/pop/phishing1510.html",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ 正規ドメイン一覧・正規メールアドレス一覧を公開",
+        "sourceUrl": "https://www2.uccard.co.jp/important/pop/phishing1510.html"
+      },
+      {
+        "text": "○ 正規SMSドメイン一覧を公開",
+        "sourceUrl": "https://www2.uccard.co.jp/important/pop/phishing1510.html"
+      }
+    ]
   },
   "KDDI": {
     "domain": "www.kddi.com",
@@ -1612,10 +1893,30 @@ const VALID_DOMAINS = {
     "lastUpdate": "2023/2/1"
   },
   "メルカリ": {
-    "domain": "jp.mercari.com",
-    "alertUrl": "",
-    "antiphishingUrl": "",
-    "lastUpdate": "2023/2/1"
+    "domain": [
+      "jp.mercari.com",
+      "www.mercari.com",
+      "about.mercari.com",
+      "help.jp.mercari.com",
+      "jp-news.mercari.com",
+      "jp.merpay.com"
+    ],
+    "alertUrl": "https://about.mercari.com/security/phishing/",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/mercari_20240122.html",
+    "sourceUrl": "https://about.mercari.com/security/phishing/",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ メール・SMS経由で顧客情報の入力を促すことは一切ないと明言",
+        "sourceUrl": "https://about.mercari.com/security/news/articles/20230502_phishing/"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規メールアドレス一覧が非公開",
+        "sourceUrl": "https://about.mercari.com/security/phishing/"
+      }
+    ]
   },
   "厚生労働省": {
     "domain": "www.mhlw.go.jp",
@@ -1672,10 +1973,34 @@ const VALID_DOMAINS = {
     "lastUpdate": ""
   },
   "JCB": {
-    "domain": "acs-jcn.dnp-cdms.jp",
-    "alertUrl": "https://www.jcb.co.jp/service/safe-secure/trouble/phishing-mail/",
-    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/creditcard_20220624.html",
-    "lastUpdate": "2023/2/13"
+    "domain": [
+      "www.jcb.co.jp",
+      "www.myjcb.jp",
+      "my.jcb.co.jp"
+    ],
+    "emailAddresses": [
+      "@jcb.co.jp",
+      "@qa.jcb.co.jp",
+      "@cj.jcb.co.jp",
+      "@info.jcb.co.jp",
+      "@mail.cd.jcb.co.jp",
+      "@campaign.jcb.co.jp",
+      "@mail-jcn.dnp-cdms.jp"
+    ],
+    "alertUrl": "https://www.jcb.co.jp/trouble/phishing-mail/",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/jcb_20241003.html",
+    "sourceUrl": "https://www.jcb.co.jp/trouble/phishing-mail/",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ メールでカード番号・暗証番号・MyJCB ID/パスワードを聞くことはないと明言",
+        "sourceUrl": "https://www.jcb.co.jp/member/article01/index.html"
+      },
+      {
+        "text": "○ 正規メール送信元ドメイン一覧を公開",
+        "sourceUrl": "https://www.jcb.co.jp/trouble/phishing-mail/"
+      }
+    ]
   },
   "UNIQLO": {
     "domain": "www.uniqlo.com",
@@ -1950,9 +2275,6 @@ const VALID_DOMAINS = {
       "g.saison.link",
       "d.saison.link"
     ],
-    // 法人向けSMS送信サービスの短縮URLドメイン（クレディセゾンが利用）
-    // kps.ms: NTTドコモビジネス「空電プッシュ」
-    // smss.jp, smsp.jp, psms.jp, csuc.jp: 複数企業が利用するSMS送信サービス
     "smsShortUrlDomains": [
       "kps.ms",
       "smss.jp",
@@ -2037,6 +2359,27 @@ const VALID_DOMAINS = {
       }
     ]
   },
+  "Apple ID": {
+    "domain": ["www.apple.com", "appleid.apple.com", "support.apple.com", "icloud.com"],
+    "alertUrl": "https://support.apple.com/en-us/102568",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/apple_20250305.html",
+    "sourceUrl": "https://support.apple.com/en-us/102568",
+    "lastUpdate": "2026/2/2",
+    "alertGoodPoints": [
+      {
+        "text": "○ メールでパスワード・認証コード・デバイスパスコードを尋ねることはないと明言",
+        "sourceUrl": "https://support.apple.com/en-us/102568"
+      },
+      {
+        "text": "○ 二要素認証での「承認」を求めることはないと明言",
+        "sourceUrl": "https://support.apple.com/en-us/102568"
+      },
+      {
+        "text": "○ セキュリティ機能の無効化を要求することはないと明言",
+        "sourceUrl": "https://support.apple.com/en-us/102568"
+      }
+    ]
+  },
   "Vpass": {
     "displayName": "Vpass（三井住友カード会員サービス）",
     "domain": "www3.vpass.ne.jp",
@@ -2061,6 +2404,116 @@ const VALID_DOMAINS = {
       {
         "text": "○ SPF/DKIM/DMARC全ての認証方式を導入",
         "sourceUrl": "https://www.smbc-card.com/mem/service/sec/domainkeys.jsp"
+      }
+    ]
+  },
+  "Viewcard": {
+    "displayName": "ビューカード（VIEW's NET）",
+    "domain": [
+      "www.viewcard.co.jp",
+      "faq.viewcard.co.jp",
+      "viewsnet.jp"
+    ],
+    "alertUrl": "https://www.jreast.co.jp/card/security/scam.html",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/viewcard_20221221.html",
+    "sourceUrl": "https://faq.viewcard.co.jp/faq/show/2736?site_domain=default",
+    "lastUpdate": "2026/2/2",
+    "alertGoodPoints": [
+      {
+        "text": "○ 個人情報をメールで伺うことは絶対にないと明言",
+        "sourceUrl": "https://faq.viewcard.co.jp/faq/show/2736?site_domain=default"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規メールドメイン一覧が非公開",
+        "sourceUrl": "https://faq.viewcard.co.jp/faq/show/2736?site_domain=default"
+      }
+    ]
+  },
+  "三井住友信託銀行": {
+    "domain": "www.smtb.jp",
+    "alertUrl": "https://www.smtb.jp/general/security/internet",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/smtb_20230410.html",
+    "sourceUrl": "https://www.smtb.jp/general/security/internet",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ メールでパスワードを尋ねることはないと明言",
+        "sourceUrl": "https://www.smtb.jp/general/security/internet"
+      },
+      {
+        "text": "○ 電子署名付きメールを導入",
+        "sourceUrl": "https://www.smtb.jp/general/security/internet"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規メールアドレス一覧が非公開",
+        "sourceUrl": "https://www.smtb.jp/general/security/internet"
+      }
+    ]
+  },
+  "警視庁": {
+    "displayName": "警視庁（東京都警察）",
+    "domain": [
+      "www.keishicho.metro.tokyo.lg.jp"
+    ],
+    "emailAddresses": [
+      "@mail.keishicho.metro.tokyo.lg.jp"
+    ],
+    "alertUrl": [
+      "https://www.keishicho.metro.tokyo.lg.jp/oshirase/caution.html",
+      "https://www.keishicho.metro.tokyo.lg.jp/kurashi/cyber/security/cyber406.html"
+    ],
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/npa_20221026.html",
+    "sourceUrl": "https://www.keishicho.metro.tokyo.lg.jp/about_mpd/joho/mail_info.html",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ 警視庁を装う偽サイトへの注意喚起ページを公開",
+        "sourceUrl": "https://www.keishicho.metro.tokyo.lg.jp/oshirase/caution.html"
+      },
+      {
+        "text": "○ 正規ドメイン（keishicho.metro.tokyo.lg.jp）を明示",
+        "sourceUrl": "https://www.keishicho.metro.tokyo.lg.jp/oshirase/caution.html"
+      },
+      {
+        "text": "○ 正規メール送信ドメイン（mail.keishicho.metro.tokyo.lg.jp）を公開",
+        "sourceUrl": "https://www.keishicho.metro.tokyo.lg.jp/about_mpd/joho/mail_info.html"
+      },
+      {
+        "text": "○ 警察がホームページで逮捕状を示したり現金振込を要求することはないと明言",
+        "sourceUrl": "https://www.keishicho.metro.tokyo.lg.jp/oshirase/caution.html"
+      }
+    ]
+  },
+  "総務省": {
+    "domain": [
+      "www.soumu.go.jp"
+    ],
+    "alertUrl": "https://www.soumu.go.jp/menu_kyotsuu/important/kinkyu02_000511.html",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/mic_20230613.html",
+    "sourceUrl": "https://www.soumu.go.jp/menu_kyotsuu/important/kinkyu02_000621.html",
+    "lastUpdate": "2026/2/3",
+    "alertGoodPoints": [
+      {
+        "text": "○ BIMI対応でメールに公式ロゴ（シンボルマーク）が表示される（2025年11月14日〜）",
+        "sourceUrl": "https://www.soumu.go.jp/menu_kyotsuu/important/kinkyu02_000621.html"
+      },
+      {
+        "text": "○ 「住民税等お支払いサイト」は設置していないと明言",
+        "sourceUrl": "https://www.soumu.go.jp/menu_kyotsuu/important/kinkyu02_000511.html"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規メールアドレス一覧が非公開",
+        "sourceUrl": "https://www.soumu.go.jp/menu_kyotsuu/important/kinkyu02_000511.html"
+      },
+      {
+        "text": "△ 正規ドメイン一覧が網羅的に公開されていない",
+        "sourceUrl": "https://www.soumu.go.jp/menu_kyotsuu/important/kinkyu02_000511.html"
       }
     ]
   }
