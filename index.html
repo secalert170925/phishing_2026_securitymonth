@@ -862,7 +862,7 @@ footer a:hover {
         font-size: 0.8rem;
     }
 }
-/* チェックリストボタン */.btn-small {    padding: 4px 12px;    font-size: 0.8rem;    vertical-align: middle;    margin-left: 10px;}/* チェックリストモーダル */.modal-wide {    max-width: 700px;}.checklist-body {    max-height: 70vh;    overflow-y: auto;}.checklist-section {    margin-bottom: 24px;}.checklist-section h4 {    font-size: 1.1rem;    color: #2e7d32;    margin-bottom: 16px;    padding-bottom: 8px;    border-bottom: 2px solid #2e7d32;}.checklist-section.checklist-issues h4 {    color: #f57c00;    border-bottom-color: #f57c00;}.checklist-section h5 {    font-size: 0.95rem;    color: #555;    margin: 16px 0 8px 0;}.checklist {    list-style: none;    padding-left: 0;}.checklist li {    padding: 8px 12px;    margin: 4px 0;    background: #f8f9fa;    border-radius: 4px;    font-size: 0.9rem;    border-left: 3px solid #4caf50;}.checklist-issues .checklist li {    border-left-color: #ff9800;}@media (max-width: 768px) {    .btn-small {        display: block;        margin: 10px 0 0 0;        width: fit-content;    }    .modal-wide {        max-width: 95vw;    }    .checklist-body {        max-height: 60vh;    }    .checklist-section h4 {        font-size: 1rem;    }    .checklist li {        font-size: 0.85rem;        padding: 6px 10px;    }}
+/* チェックリストボタン */.btn-small {    padding: 4px 12px;    font-size: 0.8rem;    vertical-align: middle;    margin-left: 10px;}/* チェックリストモーダル */.modal-wide {    max-width: 700px;}.checklist-body {    max-height: 70vh;    overflow-y: auto;}.checklist-section {    margin-bottom: 24px;}.checklist-section h4 {    font-size: 1.1rem;    color: #2e7d32;    margin-bottom: 16px;    padding-bottom: 8px;    border-bottom: 2px solid #2e7d32;}.checklist-section.checklist-issues h4 {    color: #f57c00;    border-bottom-color: #f57c00;}.checklist-section h5 {    font-size: 0.95rem;    color: #555;    margin: 16px 0 8px 0;}.checklist {    list-style: none;    padding-left: 0;}.checklist li {    padding: 8px 12px;    margin: 4px 0;    background: #f8f9fa;    border-radius: 4px;    font-size: 0.9rem;    border-left: 3px solid #4caf50;}.checklist-issues .checklist li {    border-left-color: #ff9800;}/* アコーディオン */.accordion { width: 100%; }.accordion-toggle { display: flex; align-items: center; gap: 8px; padding: 6px 10px; background-color: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 4px; cursor: pointer; font-size: 0.85rem; color: #333; transition: background-color 0.2s; }.accordion-toggle:hover { background-color: #e8eaf6; }.accordion-icon { font-size: 0.7rem; transition: transform 0.2s; }.accordion.open .accordion-icon { transform: rotate(90deg); }.accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }.accordion.open .accordion-content { max-height: 300px; overflow-y: auto; }.accordion-content > div { padding: 10px 0; }.sms-domain { display: block; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.85rem; color: #1565c0; padding: 3px 0; }@media (max-width: 768px) {    .btn-small {        display: block;        margin: 10px 0 0 0;        width: fit-content;    }    .modal-wide {        max-width: 95vw;    }    .checklist-body {        max-height: 60vh;    }    .checklist-section h4 {        font-size: 1rem;    }    .checklist li {        font-size: 0.85rem;        padding: 6px 10px;    }}
 
 </style>
 </head>
@@ -1018,6 +1018,20 @@ footer a:hover {
                         <th>正規メールアドレス</th>
                         <td id="modal-email">-</td>
                     </tr>
+                    <tr id="modal-sms-row" style="display: none;">
+                        <th>正規SMS短縮URL</th>
+                        <td id="modal-sms">
+                            <div class="accordion">
+                                <button class="accordion-toggle" type="button">
+                                    <span class="accordion-icon">▶</span>
+                                    <span id="modal-sms-count">0件</span>
+                                </button>
+                                <div class="accordion-content">
+                                    <div id="modal-sms-list"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                     <tr>
                         <th>公式注意喚起</th>
                         <td id="modal-alert">-</td>
@@ -1129,10 +1143,40 @@ const VALID_DOMAINS = {
     "lastUpdate": "2023/2/1"
   },
   "エポスカード": {
-    "domain": "www.eposcard.co.jp",
+    "domain": [
+      "www.eposcard.co.jp",
+      "faq.eposcard.co.jp",
+      "tamaru.eposcard.co.jp"
+    ],
+    "emailAddresses": [
+      "@01epos.jp",
+      "@eposcard.co.jp",
+      "@0101.co.jp"
+    ],
     "alertUrl": "https://www.eposcard.co.jp/security/unauthorized-use/index.html",
-    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/eposcard_20210607.html",
-    "lastUpdate": "2023/2/1"
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/eposcard_20230630.html",
+    "sourceUrl": "https://www.eposcard.co.jp/security/unauthorized-use/index.html",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ メール・SMSでカード番号や暗証番号等の個人情報を確認することはないと明言",
+        "sourceUrl": "https://www.eposcard.co.jp/security/unauthorized-use/index.html"
+      },
+      {
+        "text": "○ 正規メールドメイン（@01epos.jp）を公開",
+        "sourceUrl": "https://www.eposcard.co.jp/security/unauthorized-use/index.html"
+      },
+      {
+        "text": "○ フィッシングメールの具体的な見分け方を6項目提示",
+        "sourceUrl": "https://faq.eposcard.co.jp/faq/show/2444?site_domain=default"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規Webドメイン一覧が網羅的に公開されていない",
+        "sourceUrl": "https://www.eposcard.co.jp/security/unauthorized-use/index.html"
+      }
+    ]
   },
   "au": {
     "displayName": "au（KDDI）",
@@ -1238,16 +1282,115 @@ const VALID_DOMAINS = {
     ]
   },
   "ETC利用照会サービス": {
-    "domain": "www2.etc-meisai.jp",
-    "alertUrl": "不明",
-    "antiphishingUrl": "不明",
-    "lastUpdate": "2023/2/1"
+    "domain": [
+      "www.etc-meisai.jp",
+      "www2.etc-meisai.jp"
+    ],
+    "emailAddresses": [
+      "admin@ml.etc-meisai.jp"
+    ],
+    "alertUrl": "https://www.etc-meisai.jp/caution/caution_phishing.html",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/ETC_20230904.html",
+    "sourceUrl": "https://www.etc-meisai.jp/caution/caution_phishing.html",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ 正規メール配信元アドレス（admin@ml.etc-meisai.jp）を公開",
+        "sourceUrl": "https://www.etc-meisai.jp/caution/mail_confirmation.html"
+      },
+      {
+        "text": "○ フィッシングメールの具体的な件名例を複数提示",
+        "sourceUrl": "https://www.etc-meisai.jp/caution/caution_phishing.html"
+      },
+      {
+        "text": "○ フィッシングサイトの画面キャプチャと正規画面の比較を掲載",
+        "sourceUrl": "https://www.etc-meisai.jp/caution/caution_phishing.html"
+      },
+      {
+        "text": "○ 費用請求メールやリンクからの個人情報入力要求は行わないと明言",
+        "sourceUrl": "https://www.etc-meisai.jp/caution/caution_phishing.html"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規Webドメイン一覧が注意喚起ページ上で明示的にリスト化されていない",
+        "sourceUrl": "https://www.etc-meisai.jp/caution/caution_phishing.html"
+      },
+      {
+        "text": "△ DMARC/DKIM等の送信ドメイン認証技術への対応状況が不明",
+        "sourceUrl": "https://www.etc-meisai.jp/caution/caution_phishing.html"
+      }
+    ]
   },
   "NTT docomo": {
-    "domain": "flets-w.com",
-    "alertUrl": "https://www.docomo.ne.jp/info/anti-phishing/confirmation/?icid=CRP_INFO_anti-phishing_to_CRP_INFO_anti-phishing_confirmation",
-    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/nttdocomo_20220210.html",
-    "lastUpdate": "2023/2/2"
+    "displayName": "NTTドコモ",
+    "domain": [
+      "www.docomo.ne.jp",
+      "www.nttdocomo.co.jp",
+      "smt.docomo.ne.jp",
+      "mydocomo.docomo.ne.jp",
+      "www.mydocomo.com",
+      "ahamo.com",
+      "id.smt.docomo.ne.jp",
+      "cfg.smt.docomo.ne.jp",
+      "dcard.docomo.ne.jp",
+      "d-card.jp",
+      "dpoint.docomo.ne.jp",
+      "dpoint.jp",
+      "service.smt.docomo.ne.jp",
+      "shop.smt.docomo.ne.jp",
+      "flets.com",
+      "flets-w.com",
+      "apps.dmkt-sp.jp",
+      "id-credit.com",
+      "denki.docomo.ne.jp",
+      "irumo.docomo.ne.jp"
+    ],
+    "emailAddresses": [
+      "info@wdy.docomo.ne.jp",
+      "spmodemsgr@wdy.docomo.ne.jp",
+      "message_r@mail2.apl01.spmode.ne.jp",
+      "docomo@d-card.jp",
+      "info@d-card.jp",
+      "docomo.d-card@otp-auth.net",
+      "info-ec@docomo-de.net"
+    ],
+    "alertUrl": "https://www.docomo.ne.jp/info/anti-phishing/",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/nttdocomo20240123.html",
+    "sourceUrl": "https://www.docomo.ne.jp/info/anti-phishing/confirmation/",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ 公式SMS記載ドメイン一覧を約60件と網羅的に公開",
+        "sourceUrl": "https://www.docomo.ne.jp/info/anti-phishing/confirmation/"
+      },
+      {
+        "text": "○ DMARC/BIMI対応「ドコモメール公式アカウントマーク」で正規メールを視覚的に判別可能（2024年10月〜）",
+        "sourceUrl": "https://www.docomo.ne.jp/info/spam_mail/spoofing_warning/"
+      },
+      {
+        "text": "○ 2025年1月からDMARC認証失敗・未対応メールに警告表示を開始",
+        "sourceUrl": "https://www.docomo.ne.jp/info/spam_mail/spoofing_warning/"
+      },
+      {
+        "text": "○ フィッシング詐欺の実例を検索可能なデータベースとして公開",
+        "sourceUrl": "https://www.docomo.ne.jp/info/anti-phishing/example/"
+      },
+      {
+        "text": "○ dカードの正規送信元メールアドレスをFAQで公開",
+        "sourceUrl": "https://fw.dcard.docomo.ne.jp/st/faq/detail/?faqId=451095"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規メールアドレスの包括的な一覧が1ページにまとまっていない（FAQ等に分散）",
+        "sourceUrl": "https://www.docomo.ne.jp/info/anti-phishing/confirmation/"
+      },
+      {
+        "text": "△ 公式アカウントマークはドコモメールアプリ/ブラウザ版限定で他メーラー利用者には恩恵がない",
+        "sourceUrl": "https://www.docomo.ne.jp/info/spam_mail/spoofing_warning/"
+      }
+    ]
   },
   "ひかりTV": {
     "domain": "help.hikaritv.net",
@@ -1323,10 +1466,52 @@ const VALID_DOMAINS = {
     ]
   },
   "イオンカード": {
-    "domain": "www.aeon.co.jp",
-    "alertUrl": "https://www.aeon.co.jp/security/anti_phishing/",
-    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/aeoncard_20230220.html",
-    "lastUpdate": "2023/2/20"
+    "displayName": "イオンカード（イオンフィナンシャルサービス）",
+    "domain": [
+      "www.aeon.co.jp",
+      "faq.aeon.co.jp"
+    ],
+    "emailAddresses": [
+      "information@email.aeon.co.jp",
+      "information@ma2.email.aeon.co.jp",
+      "userid@aeon.co.jp",
+      "aeoncard_info@aeon.co.jp",
+      "card_store@aeon.co.jp",
+      "shinsa@aeon.co.jp",
+      "cardshinsa@email.aeon.co.jp",
+      "statement@email.aeon.co.jp",
+      "honkaku@aeon.co.jp",
+      "aeon@aeon.co.jp",
+      "thanks@aeon.co.jp",
+      "debitriyo@aeon.co.jp",
+      "waon@aeon.co.jp"
+    ],
+    "alertUrl": "https://www.aeon.co.jp/security/anti_phishing",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/aeoncard_20240508.html",
+    "sourceUrl": "https://www.aeon.co.jp/security/anti_phishing",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ メールでクレジットカード番号・暗証番号・セキュリティコード等の個人情報を聞くことは一切ないと明言",
+        "sourceUrl": "https://www.aeon.co.jp/security/anti_phishing"
+      },
+      {
+        "text": "○ 正規メールアドレス一覧・SMS配信元電話番号一覧を公開",
+        "sourceUrl": "https://www.aeon.co.jp/security/anti_phishing"
+      },
+      {
+        "text": "○ 2024年7月以降メール利用通知を廃止しプッシュ通知に移行（フィッシング対策）",
+        "sourceUrl": "https://www.aeon.co.jp/security/anti_phishing"
+      },
+      {
+        "text": "？ メール本文にお客さまの氏名を記載して配信（2025年3月〜）",
+        "sourceUrl": "https://www.aeon.co.jp/security/anti_phishing"
+      },
+      {
+        "text": "○ BIMI対応でメールにブランドロゴ・公式アカウントマークを表示",
+        "sourceUrl": "https://www.aeon.co.jp/security/anti_phishing"
+      }
+    ]
   },
   "イオン銀行": {
     "domain": "ib.aeonbank.co.jp",
@@ -1347,10 +1532,48 @@ const VALID_DOMAINS = {
     "lastUpdate": ""
   },
   "American Express": {
-    "domain": "online.americanexpress.com",
-    "alertUrl": "https://www.americanexpress.com/jp/security/protect-yourself/",
+    "displayName": "アメリカン・エキスプレス",
+    "domain": [
+      "www.americanexpress.com",
+      "online.americanexpress.com"
+    ],
+    "emailAddresses": [
+      "@aexp.com",
+      "@aexpfeedback.com",
+      "@alerts.americanexpress.com",
+      "@americanexpress.com",
+      "@americanexpress.jp",
+      "@email.americanexpress.com",
+      "@email.amexnetwork.com",
+      "@email2.americanexpress.com",
+      "@email3.americanexpress.com",
+      "@feedbackemail.americanexpress.com",
+      "@my.americanexpress.com",
+      "@service.americanexpress.com",
+      "@welcome.aexp.com",
+      "@welcome.americanexpress.com"
+    ],
+    "alertUrl": [
+      "https://www.americanexpress.com/ja-jp/security/phishing/",
+      "https://www.americanexpress.com/jp/security/protect-yourself/"
+    ],
     "antiphishingUrl": "https://www.antiphishing.jp/news/alert/american_express_20210930.html",
-    "lastUpdate": "2023/2/3"
+    "sourceUrl": "https://www.americanexpress.com/ja-jp/security/phishing/",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ 正規メール送信ドメイン一覧を公開（15種類以上）",
+        "sourceUrl": "https://www.americanexpress.com/ja-jp/security/phishing/"
+      },
+      {
+        "text": "○ 不審メール通報用アドレス（spoof@americanexpress.jp）を公開",
+        "sourceUrl": "https://www.americanexpress.com/ja-jp/security/phishing/"
+      },
+      {
+        "text": "○ ポイント有効期限切れのお知らせメールは送信しないと明言",
+        "sourceUrl": "https://www.americanexpress.com/ja-jp/security/phishing/"
+      }
+    ]
   },
   "NHK": {
     "displayName": "NHK（NHKプラス / NHK ONE）",
@@ -1401,10 +1624,34 @@ const VALID_DOMAINS = {
     "lastUpdate": ""
   },
   "ぷらら": {
-    "domain": "web1.plala.or.jp",
-    "alertUrl": "https://www.docomo.ne.jp/info/anti-phishing/confirmation/?icid=CRP_INFO_anti-phishing_to_CRP_INFO_anti-phishing_confirmation",
+    "displayName": "ぷらら（NTTドコモ）",
+    "domain": [
+      "www.plala.or.jp",
+      "web1.plala.or.jp"
+    ],
+    "alertUrl": [
+      "https://www.plala.or.jp/support/info/2025/0609/index.html",
+      "https://www.docomo.ne.jp/info/anti-phishing/confirmation/"
+    ],
     "antiphishingUrl": "https://www.antiphishing.jp/news/alert/nttdocomo_20220210.html",
-    "lastUpdate": "2023/2/2"
+    "sourceUrl": "https://www.plala.or.jp/support/info/2025/0609/index.html",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ 詐欺メール注意喚起ページを公開し具体例を提示",
+        "sourceUrl": "https://www.plala.or.jp/support/info/2025/0609/index.html"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規メールアドレス一覧が非公開",
+        "sourceUrl": "https://www.plala.or.jp/support/info/2025/0609/index.html"
+      },
+      {
+        "text": "△ 正規ドメイン一覧が網羅的に公開されていない",
+        "sourceUrl": "https://www.plala.or.jp/support/info/2025/0609/index.html"
+      }
+    ]
   },
   "アルファメール": {
     "domain": "www.alpha-mail.jp",
@@ -1413,10 +1660,56 @@ const VALID_DOMAINS = {
     "lastUpdate": "2023/2/7"
   },
   "りそな銀行": {
-    "domain": "www.b-direct.resonabank.co.jp",
-    "alertUrl": "https://www.resona-gr.co.jp/others/notice_01.html?_gl=1*1geh6qq*_ga*MTM4Mjc1NzIyNy4xNjc1NzgzNjcz*_ga_Q8HF7ESW31*MTY3NTc4MzY4NC4xLjEuMTY3NTc4MzY5NS40OS4wLjA.*_ga_TT8ESK59QK*MTY3NTc4MzY4NC4xLjEuMTY3NTc4MzY5NS40OS4wLjA.&_ga=2.163811702.817941282.1675783673-1382757227.1675783673",
-    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/resona_20220915.html",
-    "lastUpdate": "2023/2/7"
+    "domain": [
+      "www.resonabank.co.jp",
+      "ib.resonabank.co.jp",
+      "www.b-direct.resonabank.co.jp",
+      "www.info.resonabank.co.jp",
+      "point.resona-gr.co.jp",
+      "www.resona-gr.co.jp",
+      "ct.resona-chatbot.jp",
+      "resona-biz.jp",
+      "resonabank.resv.jp"
+    ],
+    "emailAddresses": [
+      "staff@e.resonabank.co.jp",
+      "@e.resonabank.co.jp",
+      "@resona.resona-gr.co.jp",
+      "@i.resonabank.co.jp",
+      "@debit.resonabank.co.jp",
+      "@ideco.resonabank.co.jp",
+      "@ma.resona-gr.co.jp",
+      "@resona-biz.jp",
+      "@oa.resona-gr.co.jp"
+    ],
+    "alertUrl": "https://www.resonabank.co.jp/kojin/gochui/detail/220913/",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/resonabank_20240702.html",
+    "sourceUrl": "https://www.resona-gr.co.jp/others/notice_01.html",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ 正規ドメイン一覧・メールアドレス一覧をグループ公式ページで網羅的に公開",
+        "sourceUrl": "https://www.resona-gr.co.jp/others/notice_01.html"
+      },
+      {
+        "text": "○ SMS送信元電話番号（0120-52-0352等）も明記",
+        "sourceUrl": "https://www.resona-gr.co.jp/others/notice_01.html"
+      },
+      {
+        "text": "○ BIMI対応でGmailに公式ブランドロゴを表示",
+        "sourceUrl": "https://www.resona-gr.co.jp/others/notice_01.html"
+      },
+      {
+        "text": "○ マイゲート正規ログインURL（ib.resonabank.co.jp）を明示",
+        "sourceUrl": "https://www.resonabank.co.jp/kojin/anshin/qa_04.html"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 個別の注意喚起ページから正規ドメイン一覧ページへの導線が分かりにくい",
+        "sourceUrl": "https://www.resonabank.co.jp/kojin/gochui/detail/220913/"
+      }
+    ]
   },
   "埼玉りそな銀行": {
     "domain": "www.b-direct.saitamaresona.co.jp",
@@ -1554,10 +1847,49 @@ const VALID_DOMAINS = {
     "lastUpdate": "2023/2/13"
   },
   "MICARD": {
-    "domain": "faq.micard.co.jp",
+    "displayName": "エムアイカード",
+    "domain": [
+      "www2.micard.co.jp",
+      "www1.micard.co.jp",
+      "www.micard.co.jp",
+      "faq.micard.co.jp",
+      "click.micard.co.jp",
+      "insurance.micard.co.jp",
+      "www.mipoint.jp"
+    ],
+    "emailAddresses": [
+      "news_01@micard.co.jp",
+      "info_answer@micard.co.jp",
+      "icardinfo@micard.co.jp",
+      "support_01@micard.co.jp",
+      "@mipoint.jp"
+    ],
     "alertUrl": "https://www2.micard.co.jp/notice/201030notice.html",
-    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/micard_20210615.html",
-    "lastUpdate": "2023/2/13"
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/micard_20230601.html",
+    "sourceUrl": "https://www2.micard.co.jp/notice/201030notice.html",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ 正規ドメイン一覧（6ドメイン）を明示的に公開",
+        "sourceUrl": "https://www2.micard.co.jp/notice/201030notice.html"
+      },
+      {
+        "text": "○ 正規メールアドレス4つを具体的に公開",
+        "sourceUrl": "https://www2.micard.co.jp/notice/2018/notice180601.html"
+      },
+      {
+        "text": "○ S/MIME電子署名付きメールを導入し証明書の確認方法を案内",
+        "sourceUrl": "https://www2.micard.co.jp/security/s-mime.html"
+      },
+      {
+        "text": "○ DMARC導入・BIMI対応でGmail等に公式ロゴ表示",
+        "sourceUrl": "https://www2.micard.co.jp/notice/201030notice.html"
+      },
+      {
+        "text": "○ カード番号・暗証番号等をメールで確認することは絶対にないと明言",
+        "sourceUrl": "https://www2.micard.co.jp/notice/201030notice.html"
+      }
+    ]
   },
   "SAISON CARD": {
     "domain": "bd.saisoncard.co.jp",
@@ -1566,16 +1898,87 @@ const VALID_DOMAINS = {
     "lastUpdate": "2023/2/13"
   },
   "GMOあおぞらネット銀行": {
-    "domain": "sso.gmo-aozora.com",
-    "alertUrl": "https://gmo-aozora.com/news/2022/20220902-02.html",
-    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/gmoaozora_20230307.html",
-    "lastUpdate": "2023/3/7"
+    "domain": [
+      "gmo-aozora.com",
+      "sso.gmo-aozora.com"
+    ],
+    "emailAddresses": [
+      "@gmo-aozora.com",
+      "@bank.gmo-aozora.com",
+      "@mail.gmo-aozora.com"
+    ],
+    "alertUrl": [
+      "https://gmo-aozora.com/security/antiphishing.html",
+      "https://gmo-aozora.com/news/2025/20250825-02.html"
+    ],
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/gmo_aozora_20250829.html",
+    "sourceUrl": "https://gmo-aozora.com/security/antiphishing.html",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ 正規メールドメイン3種類（@gmo-aozora.com, @bank.gmo-aozora.com, @mail.gmo-aozora.com）を公開",
+        "sourceUrl": "https://gmo-aozora.com/security/antiphishing.html"
+      },
+      {
+        "text": "○ 正規ログインURL（sso.gmo-aozora.com）を明示",
+        "sourceUrl": "https://gmo-aozora.com/news/2025/20250825-02.html"
+      },
+      {
+        "text": "○ SMSでは一切連絡しないと明言",
+        "sourceUrl": "https://gmo-aozora.com/news/2025/20250825-02.html"
+      },
+      {
+        "text": "○ DMARC認証を導入（2025年2月〜）・BIMI導入予定",
+        "sourceUrl": "https://gmo-aozora.com/news/2025/20250220-01.html"
+      },
+      {
+        "text": "○ ID・パスワードの再入力をメールで依頼することはないと明言",
+        "sourceUrl": "https://gmo-aozora.com/security/antiphishing.html"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 公式ページでフィッシングメールの具体的な件名例を提示していない",
+        "sourceUrl": "https://gmo-aozora.com/security/antiphishing.html"
+      }
+    ]
   },
   "楽天カード": {
-    "domain": "www.rakuten-card.co.jp",
-    "alertUrl": "",
-    "antiphishingUrl": "",
-    "lastUpdate": "2023/2/1"
+    "domain": [
+      "www.rakuten-card.co.jp",
+      "support.rakuten-card.jp"
+    ],
+    "emailAddresses": [
+      "@mail.rakuten-card.co.jp",
+      "@mkrm.rakuten.co.jp",
+      "@bounce.rakuten-card.co.jp"
+    ],
+    "alertUrl": "https://www.rakuten-card.co.jp/security/security-info/phishingmail/",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/rakutencard_20221110.html",
+    "sourceUrl": "https://www.rakuten-card.co.jp/security/security-info/phishingmail/",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ メール内でクレジットカード番号やポイントカード番号を聞き取ることはないと明言",
+        "sourceUrl": "https://www.rakuten-card.co.jp/security/security-info/phishingmail/"
+      },
+      {
+        "text": "○ 正規メール送信ドメイン3つを公開",
+        "sourceUrl": "https://www.rakuten-card.co.jp/security/security-info/phishingmail/"
+      },
+      {
+        "text": "○ 実際のフィッシングメール事例を画像で8パターン掲載し見分け方を解説",
+        "sourceUrl": "https://www.rakuten-card.co.jp/security/security-info/phishingmail/"
+      },
+      {
+        "text": "○ SPF/DKIM/DMARC対応・ブランドシンボル表示（Gmail/Yahoo!/ドコモ/Apple）",
+        "sourceUrl": "https://corp.rakuten.co.jp/security/anti-fraud/"
+      },
+      {
+        "text": "○ フィッシング対策協議会の事例確認ページへのリンクを掲載",
+        "sourceUrl": "https://www.rakuten-card.co.jp/security/security-info/phishingmail/"
+      }
+    ]
   },
   "三菱UFJフィナンシャルグループ": {
     "domain": "www.mufg.jp",
@@ -1590,10 +1993,52 @@ const VALID_DOMAINS = {
     "lastUpdate": "2023/2/21"
   },
   "楽天": {
-    "domain": "item.rakuten.co.jp",
-    "alertUrl": "https://ichiba.faq.rakuten.net/detail/000010716",
+    "displayName": "楽天（楽天市場）",
+    "domain": [
+      "www.rakuten.co.jp",
+      "item.rakuten.co.jp",
+      "www.rakuten.ne.jp",
+      "ichiba.faq.rakuten.net",
+      "grp01.id.rakuten.co.jp",
+      "login.account.rakuten.com",
+      "corp.rakuten.co.jp"
+    ],
+    "emailAddresses": [
+      "@rakuten.co.jp",
+      "@info.rakuten.co.jp",
+      "@shop.rakuten.co.jp",
+      "@emagazine.rakuten.co.jp",
+      "@id.rakuten.co.jp",
+      "@account.rakuten.com",
+      "@faq.rakuten.co.jp",
+      "@mkrm.rakuten.co.jp"
+    ],
+    "alertUrl": "https://ichiba.faq.rakuten.net/detail/000013315",
     "antiphishingUrl": "https://www.antiphishing.jp/news/alert/rakutencard_20221110.html",
-    "lastUpdate": "2023/2/21"
+    "sourceUrl": "https://ichiba.faq.rakuten.net/detail/000013315",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ 正規メール送信ドメイン8件を明記",
+        "sourceUrl": "https://ichiba.faq.rakuten.net/detail/000013315"
+      },
+      {
+        "text": "○ 正規WebドメインのURL形式（rakuten.co.jp / rakuten.ne.jp）を具体的に例示",
+        "sourceUrl": "https://ichiba.faq.rakuten.net/detail/000010716"
+      },
+      {
+        "text": "○ メール・SMS・電話・SNSのチャネル別に不正事例を分類して注意喚起",
+        "sourceUrl": "https://ichiba.faq.rakuten.net/detail/000013315"
+      },
+      {
+        "text": "○ SPF/DKIM/DMARC対応・ブランドシンボル表示（Gmail/Yahoo!/ドコモ/Apple）",
+        "sourceUrl": "https://corp.rakuten.co.jp/security/anti-fraud/"
+      },
+      {
+        "text": "○ なりすましサイト・偽メール報告フォームを提供",
+        "sourceUrl": "https://ichiba.faq.rakuten.net/detail/000013315"
+      }
+    ]
   },
   "STNet": {
     "domain": "www.stnet.co.jp",
@@ -1626,16 +2071,90 @@ const VALID_DOMAINS = {
     "lastUpdate": ""
   },
   "BIGLOBE": {
-    "domain": "www.biglobe.ne.jp",
-    "alertUrl": "",
-    "antiphishingUrl": "",
-    "lastUpdate": "2023/2/1"
+    "domain": [
+      "www.biglobe.ne.jp",
+      "support.biglobe.ne.jp",
+      "faq.support.biglobe.ne.jp",
+      "auth.sso.biglobe.ne.jp",
+      "security.biglobe.ne.jp"
+    ],
+    "alertUrl": "https://support.biglobe.ne.jp/news/phishing.html",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/biglobe_20221128.html",
+    "sourceUrl": "https://support.biglobe.ne.jp/news/phishing.html",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ ログイン情報を問い合わせるメールを送信することはないと明言",
+        "sourceUrl": "https://faq.support.biglobe.ne.jp/faq_detail.html?faq_id=13054"
+      },
+      {
+        "text": "○ 正規URLの一例（auth.sso.biglobe.ne.jp等）を提示",
+        "sourceUrl": "https://support.biglobe.ne.jp/news/phishing.html"
+      },
+      {
+        "text": "○ DMARC強化・BIMI対応予定（2025年7月〜）",
+        "sourceUrl": "https://www.biglobe.co.jp/pressroom/release/2025/07/250728-a"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規メールアドレス一覧が非公開",
+        "sourceUrl": "https://support.biglobe.ne.jp/news/phishing.html"
+      },
+      {
+        "text": "△ 正規ドメイン一覧が網羅的に公開されていない（一例のみ）",
+        "sourceUrl": "https://support.biglobe.ne.jp/news/phishing.html"
+      }
+    ]
   },
   "日本郵便": {
-    "domain": "www.post.japanpost.jp",
-    "alertUrl": "",
-    "antiphishingUrl": "",
-    "lastUpdate": "2023/2/1"
+    "domain": [
+      "www.post.japanpost.jp",
+      "trackings.post.japanpost.jp",
+      "mypost.post.japanpost.jp",
+      "lp.jpid.pf.japanpost.jp",
+      "mypage.jpid.pf.japanpost.jp",
+      "www.japanpost.jp",
+      "clickpost.jp"
+    ],
+    "emailAddresses": [
+      "@ems-post.jp",
+      "@ml.post.japanpost.jp",
+      "info@delivery.post.japanpost.jp",
+      "info@mypost.post.japanpost.jp"
+    ],
+    "alertUrl": "https://www.post.japanpost.jp/notification/notice/fraud-mail.html",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/japanpost_20251009.html",
+    "sourceUrl": "https://www.post.japanpost.jp/notification/notice/fraud-mail.html",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ 不審メールの具体例4件と特徴6項目を提示",
+        "sourceUrl": "https://www.post.japanpost.jp/notification/notice/fraud-mail.html"
+      },
+      {
+        "text": "○ SMSによる不在連絡のお知らせは行っていないと明言",
+        "sourceUrl": "https://www.post.japanpost.jp/notification/notice/fraud-mail.html"
+      },
+      {
+        "text": "○ 公式URLで.com/.net/.topドメインは使用していないと明言（否定リスト方式）",
+        "sourceUrl": "https://www.post.japanpost.jp/notification/notice/fraud-mail.html"
+      },
+      {
+        "text": "○ SPF/DKIMドメイン認証技術を導入",
+        "sourceUrl": "https://www.post.japanpost.jp/notification/notice/fraud-mail.html"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規メール送信元アドレス一覧が注意喚起ページ上で明示されていない（FAQには記載あり）",
+        "sourceUrl": "https://www.post.japanpost.jp/notification/notice/fraud-mail.html"
+      },
+      {
+        "text": "△ 正規Webドメイン一覧が網羅的に公開されていない（否定リスト方式のみ）",
+        "sourceUrl": "https://www.post.japanpost.jp/notification/notice/fraud-mail.html"
+      }
+    ]
   },
   "アプラス": {
     "domain": "www.aplus.co.jp",
@@ -1788,22 +2307,133 @@ const VALID_DOMAINS = {
     "lastUpdate": ""
   },
   "三菱UFJニコス": {
-    "domain": "www.cr.mufg.jp",
-    "alertUrl": "",
-    "antiphishingUrl": "",
-    "lastUpdate": "2023/2/1"
+    "domain": [
+      "www.cr.mufg.jp",
+      "faq.cr.mufg.jp",
+      "www2.mufgcard.com",
+      "www.mufgcard.com",
+      "www.nicos.co.jp"
+    ],
+    "emailAddresses": [
+      "@cr.mufg.jp",
+      "@mail-jcn.dnp-cdms.jp",
+      "@nicos.mufgcard.com"
+    ],
+    "alertUrl": "https://www.cr.mufg.jp/member/notice/phishing/index.html",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/mufgnicos_20210217.html",
+    "sourceUrl": "https://www.cr.mufg.jp/carduse/internet/distinction/index.html",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ メール・SMSでカード番号・暗証番号等の個人情報を確認することは一切ないと明言",
+        "sourceUrl": "https://www.cr.mufg.jp/member/notice/phishing/index.html"
+      },
+      {
+        "text": "○ SSL証明書のドメイン確認方法を図解付きで説明",
+        "sourceUrl": "https://www.cr.mufg.jp/carduse/internet/distinction/index.html"
+      },
+      {
+        "text": "○ 正規メール配信元ドメインをFAQで公開（@cr.mufg.jp, @mail-jcn.dnp-cdms.jp）",
+        "sourceUrl": "https://faq.cr.mufg.jp/mufgcard/detail?id=246"
+      },
+      {
+        "text": "○ フィッシングメール・SMSの具体例を視覚的に提示・動画コンテンツも提供",
+        "sourceUrl": "https://www.cr.mufg.jp/member/notice/phishing/index.html"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規Webドメイン一覧が注意喚起ページ本体に記載されていない（見分け方ページとFAQに分散）",
+        "sourceUrl": "https://www.cr.mufg.jp/member/notice/phishing/index.html"
+      },
+      {
+        "text": "△ 正規メールアドレスのドメイン一覧がFAQにのみ記載",
+        "sourceUrl": "https://www.cr.mufg.jp/member/notice/phishing/index.html"
+      }
+    ]
   },
   "ポケットカード": {
-    "domain": "www.pocketcard.co.jp",
-    "alertUrl": "",
-    "antiphishingUrl": "",
-    "lastUpdate": "2023/2/1"
+    "domain": [
+      "www.pocketcard.co.jp",
+      "fcard.pocketcard.co.jp",
+      "wis.pocketcard.co.jp",
+      "wmb.pocketcard.co.jp",
+      "pc-faq.pocketcard.co.jp"
+    ],
+    "emailAddresses": [
+      "@pocketcard.co.jp",
+      "@ctr.pocketcard.co.jp",
+      "@pinf.pocketcard.co.jp",
+      "@mag.pocketcard.co.jp",
+      "@pccmx.pocketcard.co.jp",
+      "@fmcmx.pocketcard.co.jp",
+      "@neps-inf.pocketcard.co.jp",
+      "@nepsg-inf.pocketcard.co.jp",
+      "@sok.pocketcard.co.jp",
+      "@wkh.pocketcard.co.jp"
+    ],
+    "alertUrl": "https://www.pocketcard.co.jp/support/mail.html",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/pocketcard_20201120.html",
+    "sourceUrl": "https://www.pocketcard.co.jp/support/mail.html",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ DMARC認証・BIMI導入（2025年2月〜）で正規メールにブランドロゴ表示",
+        "sourceUrl": "https://www.pocketcard.co.jp/news/detail.php?id=449"
+      },
+      {
+        "text": "○ 正規メール送信元ドメイン10種を公式ページに明記",
+        "sourceUrl": "https://www.pocketcard.co.jp/support/mail.html"
+      },
+      {
+        "text": "○ なりすましメール例を具体的に画像付きで開示",
+        "sourceUrl": "https://fcard.pocketcard.co.jp/topics/?id=160"
+      },
+      {
+        "text": "○ 個人情報をメールで問い合わせることはないと明言",
+        "sourceUrl": "https://fcard.pocketcard.co.jp/topics/?id=160"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規Webドメイン一覧が注意喚起ページに網羅的に公開されていない",
+        "sourceUrl": "https://www.pocketcard.co.jp/support/use/internet.html"
+      }
+    ]
   },
   "PayPay": {
-    "domain": "paypay.ne.jp",
-    "alertUrl": "",
-    "antiphishingUrl": "",
-    "lastUpdate": "2023/2/1"
+    "domain": [
+      "paypay.ne.jp",
+      "about.paypay.ne.jp",
+      "paypay-corp.co.jp"
+    ],
+    "alertUrl": [
+      "https://paypay.ne.jp/help/c0143/",
+      "https://paypay.ne.jp/security/phishing/"
+    ],
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/paypay_20250521.html",
+    "sourceUrl": "https://paypay.ne.jp/security/phishing/",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ BIMI対応でYahoo!メール・Gmailに公式ロゴが表示される",
+        "sourceUrl": "https://paypay.ne.jp/security/phishing/"
+      },
+      {
+        "text": "○ 不正利用時の全額補償を明言",
+        "sourceUrl": "https://paypay.ne.jp/security/phishing/"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 正規メールアドレス一覧が非公開",
+        "sourceUrl": "https://paypay.ne.jp/help/c0143/"
+      },
+      {
+        "text": "△ 正規ドメイン一覧が網羅的に公開されていない",
+        "sourceUrl": "https://paypay.ne.jp/help/c0143/"
+      }
+    ]
   },
   "三井住友銀行": {
     "domain": "www.smbc.co.jp",
@@ -1845,6 +2475,7 @@ const VALID_DOMAINS = {
       "opmr@mail.saisoncard.co.jp",
       "opbd@mail.saisoncard.co.jp"
     ],
+    // 法人向けSMS送信サービスの短縮URLドメイン（UCカードが利用）
     "smsShortUrlDomains": [
       "smsp.jp",
       "psms.jp",
@@ -2009,10 +2640,50 @@ const VALID_DOMAINS = {
     "lastUpdate": "2023/2/1"
   },
   "LIFE CARD": {
-    "domain": "www.lifecard.co.jp",
-    "alertUrl": "",
-    "antiphishingUrl": "",
-    "lastUpdate": "2023/2/1"
+    "domain": [
+      "www.lifecard.co.jp",
+      "www3.lifecard.co.jp",
+      "help.lifecard.co.jp"
+    ],
+    "emailAddresses": [
+      "mailadm@SVR-W05.lifecard.co.jp",
+      "lifeweb-entry@lifecard.co.jp",
+      "lifemail@lifecard.co.jp",
+      "lifemail@mamail.lifecard.co.jp",
+      "jh1xzx@lifecard.co.jp"
+    ],
+    "alertUrl": "https://www.lifecard.co.jp/info/security_caution.html",
+    "antiphishingUrl": "https://www.antiphishing.jp/news/alert/lifecard_20230309.html",
+    "sourceUrl": "https://www.lifecard.co.jp/info/231215.html",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ DMARC/SPF/DKIM対応済み（2024年6月〜）でなりすましメールを技術的にブロック",
+        "sourceUrl": "https://www.lifecard.co.jp/info/240701_1.html"
+      },
+      {
+        "text": "○ 正規メールアドレス一覧をヘルプFAQで公開",
+        "sourceUrl": "https://help.lifecard.co.jp/"
+      },
+      {
+        "text": "○ LIFE-Web Deskにセキュリティコードの入力を求める画面はないと明言",
+        "sourceUrl": "https://www3.lifecard.co.jp/WebDesk/www/login.html"
+      }
+    ],
+    "alertIssues": [
+      {
+        "text": "△ 注意喚起ページ（security_caution.html）は画像のみで文字による具体的説明が乏しい",
+        "sourceUrl": "https://www.lifecard.co.jp/info/security_caution.html"
+      },
+      {
+        "text": "△ 正規ドメイン一覧が一元的に整理されたページがなく情報が分散",
+        "sourceUrl": "https://www.lifecard.co.jp/info/security_caution.html"
+      },
+      {
+        "text": "△ 偽メール注意喚起ページが2021年の情報のまま更新されていない",
+        "sourceUrl": "https://www.lifecard.co.jp/info/210224.html"
+      }
+    ]
   },
   "BINANCE": {
     "domain": "www.binance.com",
@@ -2142,13 +2813,30 @@ const VALID_DOMAINS = {
   },
   "JAバンク": {
     "displayName": "JAバンク、JAネットバンク",
-    "domain": ["www.jabank.org", "www.janetbank.jp"],
+    "domain": ["www.jabank.org", "www.jabank.jp"],
+    "emailAddresses": [
+      "@webcenter.anser.or.jp",
+      "@otp-auth.net",
+      "@janetbank.jp"
+    ],
     "alertUrl": [
       "https://www.jabank.org/attention/phishing/",
-      "https://www.jabank.jp/emergencies/detail/240919_9ef8f7b6"
+      "https://www.jabank.jp/emergencies/detail/240919_9ef8f7b6",
+      "https://www.jabank.org/osirase/250421a.html"
     ],
     "antiphishingUrl": "https://www.antiphishing.jp/news/alert/jabank_20240902.html",
-    "lastUpdate": "2026/2/2",
+    "sourceUrl": "https://www.jabank.jp/questions/other",
+    "lastUpdate": "2026/2/4",
+    "alertGoodPoints": [
+      {
+        "text": "○ 23例の具体的なフィッシングメール件名を提示",
+        "sourceUrl": "https://www.jabank.jp/emergencies/detail/240919_9ef8f7b6"
+      },
+      {
+        "text": "○ 正規メールドメイン3つ（@webcenter.anser.or.jp, @otp-auth.net, @janetbank.jp）を公開",
+        "sourceUrl": "https://www.jabank.jp/questions/other"
+      }
+    ],
     "alertIssues": [
       {
         "text": "△ 画像内で例示ドメインとして不適切なドメイン(xxx.com)を使用",
@@ -2157,12 +2845,6 @@ const VALID_DOMAINS = {
       {
         "text": "△ 公式サイトのドメインの一覧を非開示",
         "sourceUrl": "https://www.jabank.org/attention/phishing/"
-      }
-    ],
-    "alertGoodPoints": [
-      {
-        "text": "○ 23例の具体的なフィッシングメール件名を提示",
-        "sourceUrl": "https://www.jabank.jp/emergencies/detail/240919_9ef8f7b6"
       }
     ]
   },
@@ -2275,6 +2957,9 @@ const VALID_DOMAINS = {
       "g.saison.link",
       "d.saison.link"
     ],
+    // 法人向けSMS送信サービスの短縮URLドメイン（クレディセゾンが利用）
+    // kps.ms: NTTドコモビジネス「空電プッシュ」
+    // smss.jp, smsp.jp, psms.jp, csuc.jp: 複数企業が利用するSMS送信サービス
     "smsShortUrlDomains": [
       "kps.ms",
       "smss.jp",
@@ -2893,6 +3578,11 @@ function showMoreTargetStats() {
  * サービス詳細モーダルを表示
  */
 function showServiceModal(serviceName) {
+    // URLパラメータにサービス名を埋め込み（リロード時の状態復元用）
+    const url = new URL(window.location);
+    url.searchParams.set('service', serviceName);
+    history.replaceState(null, '', url);
+
     const validDomains = (typeof VALID_DOMAINS !== 'undefined') ? VALID_DOMAINS : {};
     const info = validDomains[serviceName];
 
@@ -2925,6 +3615,20 @@ function showServiceModal(serviceName) {
             document.getElementById('modal-email-row').style.display = '';
         } else {
             document.getElementById('modal-email-row').style.display = 'none';
+        }
+
+        // 正規SMS短縮URLドメイン（アコーディオン形式）
+        if (info.smsShortUrlDomains && info.smsShortUrlDomains.length > 0) {
+            const count = info.smsShortUrlDomains.length;
+            document.getElementById('modal-sms-count').textContent = `${count}件`;
+            document.getElementById('modal-sms-list').innerHTML = info.smsShortUrlDomains
+                .map(domain => `<span class="sms-domain">${escapeHtml(domain)}</span>`)
+                .join('');
+            document.getElementById('modal-sms-row').style.display = '';
+            // アコーディオンをリセット（閉じた状態に）
+            document.querySelector('#modal-sms .accordion').classList.remove('open');
+        } else {
+            document.getElementById('modal-sms-row').style.display = 'none';
         }
 
         // 公式注意喚起（配列または文字列に対応）
@@ -2999,6 +3703,7 @@ function showServiceModal(serviceName) {
     } else {
         document.getElementById('modal-domain').innerHTML = '<span class="no-data">未登録</span>';
         document.getElementById('modal-email-row').style.display = 'none';
+        document.getElementById('modal-sms-row').style.display = 'none';
         document.getElementById('modal-alert').innerHTML = '<span class="no-data">未登録</span>';
         document.getElementById('modal-antiphishing').innerHTML = '<span class="no-data">未登録</span>';
         document.getElementById('modal-source-row').style.display = 'none';
@@ -3014,6 +3719,11 @@ function showServiceModal(serviceName) {
  * モーダルを閉じる
  */
 function closeServiceModal() {
+    // URLパラメータからサービス名を削除
+    const url = new URL(window.location);
+    url.searchParams.delete('service');
+    history.replaceState(null, '', url);
+
     document.getElementById('service-modal').classList.add('hidden');
 }
 
@@ -3321,6 +4031,13 @@ function init() {
 
         // イベントリスナー設定
         setupEventListeners();
+
+        // URLパラメータからサービス詳細モーダルを復元
+        const urlParams = new URLSearchParams(window.location.search);
+        const serviceParam = urlParams.get('service');
+        if (serviceParam) {
+            showServiceModal(serviceParam);
+        }
 
         // ローディング非表示
         elements.loading.classList.add('hidden');
