@@ -862,7 +862,7 @@ footer a:hover {
         font-size: 0.8rem;
     }
 }
-/* チェックリストボタン */.btn-small {    padding: 4px 12px;    font-size: 0.8rem;    vertical-align: middle;    margin-left: 10px;}/* チェックリストモーダル */.modal-wide {    max-width: 700px;}.checklist-body {    max-height: 70vh;    overflow-y: auto;}.checklist-section {    margin-bottom: 24px;}.checklist-section h4 {    font-size: 1.1rem;    color: #2e7d32;    margin-bottom: 16px;    padding-bottom: 8px;    border-bottom: 2px solid #2e7d32;}.checklist-section.checklist-issues h4 {    color: #f57c00;    border-bottom-color: #f57c00;}.checklist-section h5 {    font-size: 0.95rem;    color: #555;    margin: 16px 0 8px 0;}.checklist {    list-style: none;    padding-left: 0;}.checklist li {    padding: 8px 12px;    margin: 4px 0;    background: #f8f9fa;    border-radius: 4px;    font-size: 0.9rem;    border-left: 3px solid #4caf50;}.checklist-issues .checklist li {    border-left-color: #ff9800;}/* アコーディオン */.accordion { width: 100%; }.accordion-toggle { display: flex; align-items: center; gap: 8px; padding: 6px 10px; background-color: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 4px; cursor: pointer; font-size: 0.85rem; color: #333; transition: background-color 0.2s; }.accordion-toggle:hover { background-color: #e8eaf6; }.accordion-icon { font-size: 0.7rem; transition: transform 0.2s; }.accordion.open .accordion-icon { transform: rotate(90deg); }.accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }.accordion.open .accordion-content { max-height: 300px; overflow-y: auto; }.accordion-content > div { padding: 10px 0; }.sms-domain { display: block; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.85rem; color: #1565c0; padding: 3px 0; }.shared-platform-domain { display: block; padding: 4px 0; }.shared-platform-domain .domain-name { font-family: 'Consolas', 'Monaco', monospace; font-size: 0.85rem; color: #1565c0; }.shared-platform-domain .domain-desc { font-size: 0.75rem; color: #888; margin-left: 8px; }@media (max-width: 768px) {    .btn-small {        display: block;        margin: 10px 0 0 0;        width: fit-content;    }    .modal-wide {        max-width: 95vw;    }    .checklist-body {        max-height: 60vh;    }    .checklist-section h4 {        font-size: 1rem;    }    .checklist li {        font-size: 0.85rem;        padding: 6px 10px;    }}
+/* チェックリストボタン */.btn-small {    padding: 4px 12px;    font-size: 0.8rem;    vertical-align: middle;    margin-left: 10px;}/* チェックリストモーダル */.modal-wide {    max-width: 700px;    max-height: 85vh;    overflow: hidden;    display: flex;    flex-direction: column;}.modal-wide .modal-close {    flex-shrink: 0;}.modal-wide h3 {    flex-shrink: 0;}.modal-wide .checklist-legend {    flex-shrink: 0;}.checklist-body {    flex: 1;    overflow-y: auto;    min-height: 0;}.checklist-section {    margin-bottom: 24px;}.checklist-section h4 {    font-size: 1.1rem;    color: #2e7d32;    margin-bottom: 16px;    padding-bottom: 8px;    border-bottom: 2px solid #2e7d32;}.checklist-section.checklist-issues h4 {    color: #f57c00;    border-bottom-color: #f57c00;}.checklist-section h5 {    font-size: 0.95rem;    color: #555;    margin: 16px 0 8px 0;}.checklist {    list-style: none;    padding-left: 0;}.checklist li {    padding: 8px 12px;    margin: 4px 0;    background: #f8f9fa;    border-radius: 4px;    font-size: 0.9rem;    border-left: 3px solid #4caf50;}.checklist-issues .checklist li {    border-left-color: #ff9800;}.checklist-legend {    text-align: center;    color: #666;    font-size: 0.9rem;    margin: 0 0 16px 0;    padding: 8px;    background: #f0f0f0;    border-radius: 4px;}.checklist-note {    font-size: 0.8rem;    color: #888;    margin-top: 8px;    padding-left: 12px;}/* アコーディオン */.accordion { width: 100%; }.accordion-toggle { display: flex; align-items: center; gap: 8px; padding: 6px 10px; background-color: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 4px; cursor: pointer; font-size: 0.85rem; color: #333; transition: background-color 0.2s; }.accordion-toggle:hover { background-color: #e8eaf6; }.accordion-icon { font-size: 0.7rem; transition: transform 0.2s; }.accordion.open .accordion-icon { transform: rotate(90deg); }.accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }.accordion.open .accordion-content { max-height: 300px; overflow-y: auto; }.accordion-content > div { padding: 10px 0; }.sms-domain { display: block; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.85rem; color: #1565c0; padding: 3px 0; }.shared-platform-domain { display: block; padding: 4px 0; }.shared-platform-domain .domain-name { font-family: 'Consolas', 'Monaco', monospace; font-size: 0.85rem; color: #1565c0; }.shared-platform-domain .domain-desc { font-size: 0.75rem; color: #888; margin-left: 8px; }@media (max-width: 768px) {    .btn-small {        display: block;        margin: 10px 0 0 0;        width: fit-content;    }    .modal-wide {        max-width: 95vw;        max-height: 80vh;    }    .checklist-section h4 {        font-size: 1rem;    }    .checklist li {        font-size: 0.85rem;        padding: 6px 10px;    }}
 
 </style>
 </head>
@@ -1080,59 +1080,80 @@ footer a:hover {
         <div class="modal-content modal-wide">
             <button class="modal-close" id="checklist-modal-close">&times;</button>
             <h3>注意喚起ページ評価チェックリスト</h3>
+            <p class="checklist-legend">○ 良い点 ／ △ 軽微な問題 ／ ？ 評価が分かれる点</p>
             <div class="modal-body checklist-body">
                 <div class="checklist-section">
                     <h4>○ 良い点（alertGoodPoints）</h4>
 
-                    <h5>正規情報の公開</h5>
+                    <h5>【情報開示】</h5>
                     <ul class="checklist">
-                        <li>正規ドメイン一覧を公開</li>
-                        <li>正規ログインURLを公開</li>
-                        <li>正規メールアドレス一覧を公開</li>
-                        <li>正規SMS送信元ドメイン一覧を公開</li>
-                        <li>正規ログインページURL・SMS案内URL一覧を公開</li>
+                        <li>正規Webドメイン一覧を公開している</li>
+                        <li>正規メールアドレス/送信ドメイン一覧を公開している</li>
+                        <li>正規SMS送信元電話番号を公開している</li>
+                        <li>正規SMSに含まれる短縮URLドメインを公開している</li>
+                        <li>正規ログインURLを明示している</li>
                     </ul>
 
-                    <h5>「〜することはない」の明言</h5>
+                    <h5>【技術的対策】</h5>
                     <ul class="checklist">
-                        <li>メールでログインID・パスワード等を尋ねることはないと明言</li>
-                        <li>メールでパスワード・認証コード・デバイスパスコードを尋ねることはないと明言</li>
-                        <li>ログイン時にカード番号・暗証番号等を求めることはないと明言</li>
-                        <li>ログイン後すぐに取引パスワードを求めることはないと明言</li>
-                        <li>ネットショッピング時以外に認証コードを求めることはないと明言</li>
-                        <li>個人情報をメールで伺うことは絶対にないと明言</li>
-                        <li>セキュリティ機能の無効化を要求することはないと明言</li>
-                    </ul>
-
-                    <h5>セキュリティ技術の導入</h5>
-                    <ul class="checklist">
+                        <li>DMARC認証を導入している</li>
+                        <li>SPF/DKIM認証を導入している</li>
                         <li>BIMI対応でメールに公式ロゴが表示される</li>
-                        <li>SPF/DKIM/DMARC全ての認証方式を導入</li>
+                        <li>S/MIME電子署名付きメールを導入している</li>
+                        <li>メッセージセンター等で正規メールを確認できる機能を提供している</li>
                     </ul>
 
-                    <h5>その他の良い取り組み</h5>
+                    <h5>【明言・否定事項】</h5>
                     <ul class="checklist">
-                        <li>LINE・SNS経由の詐欺についても注意喚起</li>
-                        <li>具体的なフィッシングメール件名を提示</li>
-                        <li>お気に入り・ブックマークからアクセスするよう明記</li>
+                        <li>メール/SMSでカード番号・暗証番号・パスワード等の個人情報を確認することはないと明言</li>
+                        <li>ログイン時にカード番号・暗証番号等を求めることはないと明言</li>
+                        <li>SMSでは連絡しない/連絡していないと明言</li>
+                        <li>費用請求・支払催促・差押予告メールは送らないと明言</li>
+                        <li>正規メールには原則URLを記載しないと明言</li>
+                        <li>自動退会を予告するメールは送信していないと明言</li>
+                        <li>アップグレード手続き/外部サイトへの直接誘導はしないと明言</li>
+                        <li>ポイント有効期限切れのお知らせメールは送信しないと明言</li>
+                    </ul>
+
+                    <h5>【ユーザー支援】</h5>
+                    <ul class="checklist">
+                        <li>フィッシングメールの具体的な件名例を提示している</li>
+                        <li>フィッシングサイトの画面キャプチャを掲載している</li>
+                        <li>フィッシングメールの見分け方を詳しく解説している</li>
+                        <li>不審メール通報用アドレス/報告フォームを提供している</li>
+                        <li>LINE公式アカウントの見分け方を提示している</li>
+                        <li>公式アプリ・ブックマークからのアクセスを推奨している</li>
+                        <li>フィッシング詐欺の実例をデータベース化して公開している</li>
+                        <li>不正利用時の補償について明言している</li>
                     </ul>
                 </div>
 
                 <div class="checklist-section checklist-issues">
                     <h4>△ 問題点・改善点（alertIssues）</h4>
 
-                    <h5>情報の非公開</h5>
+                    <h5>【情報開示の不足】</h5>
                     <ul class="checklist">
-                        <li>正規Webサイトドメインが非公開</li>
-                        <li>正規メールアドレス一覧が非公開</li>
-                        <li>正規メールドメイン一覧が非公開</li>
+                        <li>正規Webドメイン一覧が網羅的に公開されていない</li>
+                        <li>正規メールアドレス一覧が非公開/網羅的でない</li>
+                        <li>正規ドメイン一覧が注意喚起ページ本体に記載されていない（別ページやFAQに分散）</li>
                     </ul>
 
-                    <h5>その他の問題</h5>
+                    <h5>【技術的対策の不足】</h5>
                     <ul class="checklist">
-                        <li>日本語での注意喚起ページがない（海外企業の場合）</li>
-                        <li>画像内で例示ドメインとして不適切なドメインを使用（例: xxx.com）</li>
+                        <li>DMARC/DKIM等の送信ドメイン認証技術への対応状況が不明</li>
+                        <li>公式アカウントマークが特定アプリ限定で他メーラー利用者には恩恵がない</li>
                     </ul>
+
+                    <h5>【情報の質・導線】</h5>
+                    <ul class="checklist">
+                        <li>注意喚起ページが画像のみで文字による具体的説明が乏しい</li>
+                        <li>偽メール注意喚起ページの情報が古いまま更新されていない</li>
+                        <li>正規ドメイン一覧ページへの導線が分かりにくい</li>
+                        <li>フィッシングメールの具体的な件名例を提示していない</li>
+                        <li>日本語での注意喚起ページがない（海外企業の場合）</li>
+                        <li>画像内で例示ドメインとして不適切なドメインを使用している</li>
+                    </ul>
+                    <p class="checklist-note">※ RFC 2606で定義された安全な例示用ドメインは example.com / example.org / example.net のみ</p>
                 </div>
             </div>
         </div>
